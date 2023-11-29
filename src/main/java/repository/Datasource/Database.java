@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository;
+package repository.Datasource;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    private static final String URL = "jdbc:sqlite:/C:/Users/dougl/OneDrive/Documentos/NetBeansProjects/trabalho_de_projetos/src/main/java/repository/BANCO.db";
+    private static final String URL = "jdbc:sqlite:./src/main/java/repository/BANCO.db";
       
     private static Connection connection;
 

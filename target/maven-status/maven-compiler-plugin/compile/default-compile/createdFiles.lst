@@ -1,6 +1,6 @@
-repository\Database.class
-repository\UserDAO.class
-repository\NotificationDAO.class
+repository\Datasource\NotificationDAO.class
+repository\Datasource\UserDAO.class
 com\douglasbm04\trabalho_de_projetos\Trabalho_de_projetos.class
 model\User.class
 model\Notification.class
+repository\Datasource\Database.class

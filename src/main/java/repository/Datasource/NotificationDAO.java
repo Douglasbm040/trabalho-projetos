@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository;
+package repository.Datasource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -70,7 +70,7 @@ public class NotificationDAO {
         }
     }
    public void updateNotification(Notification notification) {
-        String sql = "UPDATE NOTIFICATION SET CONTENT = ?, DATE_ENVIO = ? WHERE ID_USER = ?";
+        String sql = "UPDATE NOTIFICATION SET CONTENT = ?, DATE_ENVIO = ? WHERE ID_NOTIFICATION = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, notification.getContent());
