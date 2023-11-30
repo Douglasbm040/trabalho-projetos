@@ -9,5 +9,5 @@ package repository.Logs.Adapted;
  * @author dougl
  */
 public class LogCSV {
-    
+ // DESENVOLVER A LOGICA   
 }

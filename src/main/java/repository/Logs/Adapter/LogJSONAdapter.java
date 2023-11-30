@@ -4,7 +4,6 @@
  */
 package repository.Logs.Adapter;
 
-import repository.Logs.Adapted.LogCSV;
 import repository.Logs.Adapted.LogJSON;
 
 /**

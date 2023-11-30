@@ -19,12 +19,10 @@ public class LogCSVAdapter implements ILogMethod {
 
     @Override
     public void saveLog(String log) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        throw new UnsupportedOperationException("Not supported yet.");     }
 
     @Override
     public void getRegisterLog() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        throw new UnsupportedOperationException("Not supported yet.");    }
     
 }

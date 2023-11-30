@@ -4,10 +4,27 @@
  */
 package Service.observer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  *
  * @author dougl
  */
-public class Observable {
+public abstract class Observable {
+    private List<IObserver> observers = new ArrayList();
     
+    public void addObserver(IObserver observer){
+        observers.add(observer);
+    }
+    public void deleteObserver(IObserver observer){
+          observers.remove(observer);
+    }
+    
+    public void notifyObserver(){
+        for (IObserver observer: observers ){
+            observer.upadate();   
+        }
+    }
 }

@@ -12,5 +12,4 @@ import repository.Logs.Adapter.ILogMethod;
  */
 public interface IStrategyFactoryLogMethod {
    public ILogMethod create();
- 
 }

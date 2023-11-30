@@ -9,5 +9,6 @@ package repository.Logs.Adapter;
  * @author dougl
  */
 public interface ILogMethod {
-    //Codigo do log   
+    public void saveLog(String log);
+    public void getRegisterLog();
 }
