@@ -1,6 +1,13 @@
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\Factories\NotificationFactory\IStrategyFactoryNotificationDAODatabase.java
 C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\model\User.java
 C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\com\douglasbm04\trabalho_de_projetos\Trabalho_de_projetos.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\DabaseConnection.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\Factories\UserFactory\IStrategyFactoryUserDAODatabase.java
 C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\model\Notification.java
-C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\NotificationDAO.java
-C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\Database.java
-C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\UserDAO.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\Factories\NotificationFactory\NotificationDAOSQLiteFactory.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\DAO\NotificationDAO\INotificationDAO.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\DAO\NotificationDAO\NotificationDAOSQLite.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\DAO\UserDAO\IUserDAO.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\DAO\UserDAO\UserDAOSQLite.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\DatabaseSQLiteConnection.java
+C:\Users\dougl\OneDrive\Documentos\NetBeansProjects\trabalho_de_projetos\trabalho-projetos\src\main\java\repository\Datasource\Factories\UserFactory\UserDAOSQLiteFactory.java

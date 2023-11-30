@@ -1,6 +1,13 @@
-repository\Datasource\NotificationDAO.class
-repository\Datasource\UserDAO.class
+repository\Datasource\DAO\NotificationDAO\UserDAO\IUserDAO.class
+repository\Datasource\DatabaseSQLiteConnection.class
+repository\Datasource\DAO\UserDAO\UserDAOSQLite.class
+repository\Datasource\Factories\UserFactory\IStrategyFactoryUserDAODatabase.class
+repository\Datasource\DAO\NotificationDAO\INotificationDAO.class
+repository\Datasource\Factories\UserFactory\UserDAOSQLiteFactory.class
+repository\Datasource\Factories\NotificationDAOSQLiteFactory.class
+repository\Datasource\Factories\IStrategyFactoryNotificationDAODatabase.class
+repository\Datasource\DabaseConnection.class
 com\douglasbm04\trabalho_de_projetos\Trabalho_de_projetos.class
 model\User.class
 model\Notification.class
-repository\Datasource\Database.class
+repository\Datasource\DAO\NotificationDAO\NotificationDAOSQLite.class

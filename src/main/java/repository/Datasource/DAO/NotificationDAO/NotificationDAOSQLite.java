@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Notification;
-import repository.Datasource.Database;
+import repository.Datasource.DatabaseSQLiteConnection;
 
 
 /**
@@ -20,7 +20,7 @@ public class NotificationDAOSQLite implements INotificationDAO{
         private Connection connection;
 
     public NotificationDAOSQLite() {
-        this.connection = Database.getConnection();
+        this.connection = DatabaseSQLiteConnection.getConnection();
     }
 
         @Override

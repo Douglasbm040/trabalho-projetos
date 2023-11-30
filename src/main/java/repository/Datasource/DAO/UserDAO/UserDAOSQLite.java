@@ -2,21 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository.Datasource.DAO.NotificationDAO.UserDAO;
+package repository.Datasource.DAO.UserDAO;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.User;
-import repository.Datasource.Database;
-import repository.Datasource.Database;
+import repository.Datasource.DAO.NotificationDAO.UserDAO.IUserDAO;
+import repository.Datasource.DatabaseSQLiteConnection;
 
 public class UserDAOSQLite implements IUserDAO{
     private Connection connection;
 
     public UserDAOSQLite() {
-        this.connection = Database.getConnection();
+        this.connection = DatabaseSQLiteConnection.getConnection();
     }
 
     public void insertUser(User user) {
