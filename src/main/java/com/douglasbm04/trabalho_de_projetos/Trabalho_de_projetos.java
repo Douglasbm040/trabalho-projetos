@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Notification;
-import repository.Datasource.UserDAO;
+import repository.Datasource.DAO.NotificationDAO.UserDAO.UserDAO;
 import java.util.Date;
 import model.User;
 import repository.Datasource.NotificationDAO;

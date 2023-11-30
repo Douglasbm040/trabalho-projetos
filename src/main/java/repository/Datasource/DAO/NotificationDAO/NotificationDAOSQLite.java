@@ -2,26 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package repository.Datasource;
+package repository.Datasource.DAO.NotificationDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.Notification;
+import repository.Datasource.Database;
 
 
 /**
  *
  * @author dougl
  */
-public class NotificationDAO {
+public class NotificationDAOSQLite implements INotificationDAO{
         private Connection connection;
 
-    public NotificationDAO() {
+    public NotificationDAOSQLite() {
         this.connection = Database.getConnection();
     }
 
+        @Override
     public void insertNotification(Notification notification) {
         String sql = "INSERT INTO NOTIFICATION (CONTENT, DATE_ENVIO, ID_USER) VALUES (?, ?,?)";
 
@@ -41,6 +43,7 @@ public class NotificationDAO {
             e.printStackTrace();
         }
     }
+        @Override
       public void SelectNotificationALL(){
          
             String sql = "SELECT * FROM NOTIFICATION";
@@ -68,7 +71,8 @@ public class NotificationDAO {
            
       
         }
-    }
+    } 
+      @Override
    public void updateNotification(Notification notification) {
         String sql = "UPDATE NOTIFICATION SET CONTENT = ?, DATE_ENVIO = ? WHERE ID_NOTIFICATION = ?";
 
@@ -105,6 +109,7 @@ public class NotificationDAO {
             e.printStackTrace();
         }
     }
+                  @Override
        public void deleteNotification(Notification notification) {
         String sql = "DELETE FROM NOTIFICATION WHERE ID_USER = ?";
 
