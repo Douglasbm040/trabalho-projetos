@@ -13,12 +13,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Database {
+public class DatabaseSQLiteConnection {
     private static final String URL = "jdbc:sqlite:./src/main/java/repository/BANCO.db";
       
     private static Connection connection;
 
-    private Database() { }
+    private DatabaseSQLiteConnection() { }
 
     public static Connection getConnection() {
         if (connection == null) {
@@ -26,10 +26,19 @@ public class Database {
                 Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection(URL);
             } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+                throw new RuntimeException("Falha ao conectar com banco de dados", e.getCause());
             }
         }
         return connection;
+    }
+    public static void closerConnection() {
+         try {
+            if(connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("falha ao fechar conexao", e.getCause());
+        }
     }
 }
 
