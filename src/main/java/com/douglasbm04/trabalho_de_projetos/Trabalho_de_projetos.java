@@ -8,7 +8,7 @@ package com.douglasbm04.trabalho_de_projetos;
 
 import model.Notification;
 import repository.Datasource.DAO.NotificationDAO.INotificationDAO;
-import repository.Datasource.Factories.NotificationDAOSQLiteFactory;
+import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
 
 
 /**

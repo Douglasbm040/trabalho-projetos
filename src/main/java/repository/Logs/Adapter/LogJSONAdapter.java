@@ -4,13 +4,10 @@
  */
 package repository.Logs.Adapter;
 
-import repository.Logs.Adapted.LogJSON;
-
 /**
- *
  * @author dougl
  */
-public class LogJSONAdapter implements ILogMethod{
+public class LogJSONAdapter implements ILogMethod {
     private final LogJSON log;
 
     public LogJSONAdapter() {
@@ -18,13 +15,12 @@ public class LogJSONAdapter implements ILogMethod{
     }
 
     @Override
-    public void saveLog(String log) {
-        throw new UnsupportedOperationException("Not supported yet.");     }
+    public void saveLog(String message) {
+        log.save(message);
+    }
 
     @Override
-    public void getRegisterLog() {
-        throw new UnsupportedOperationException("Not supported yet.");    }
-    
-
- 
+    public String getRegisterLog() {
+        return log.get();
+    }
 }

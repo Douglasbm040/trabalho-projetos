@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-import java.util.Date;
 
 /**
  *
@@ -12,12 +11,12 @@ import java.util.Date;
 public class Notification {
     private String content;
     private String dataEnvio;
-    private int id_receptor;
+    private int idReceptor;
 
-    public Notification(String content, String dataEnvio, int id_receptor) {
+    public Notification(String content, String dataEnvio, int idReceptor) {
         this.content = content;
         this.dataEnvio = dataEnvio;
-        this.id_receptor = id_receptor;
+        this.idReceptor = idReceptor;
     }
     
     
@@ -30,12 +29,12 @@ public class Notification {
         this.dataEnvio = dataEnvio;
     }
 
-    public int getId_receptor() {
-        return id_receptor;
+    public int getIdReceptor() {
+        return idReceptor;
     }
 
-    public void setId_receptor(int id_receptor) {
-        this.id_receptor = id_receptor;
+    public void setIdReceptor(int idReceptor) {
+        this.idReceptor = idReceptor;
     }
 
 

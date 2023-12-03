@@ -10,5 +10,5 @@ package repository.Logs.Adapter;
  */
 public interface ILogMethod {
     public void saveLog(String log);
-    public void getRegisterLog();
+    public String getRegisterLog();
 }

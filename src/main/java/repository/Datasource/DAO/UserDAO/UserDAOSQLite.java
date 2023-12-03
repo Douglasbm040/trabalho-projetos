@@ -23,8 +23,8 @@ public class UserDAOSQLite implements IUserDAO{
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getToken_access());
-            preparedStatement.setInt(3, user.getTag_access());
+            preparedStatement.setString(2, user.getTokenAccess());
+            preparedStatement.setInt(3, user.getTagAccess());
 
             int rowsAffected = preparedStatement.executeUpdate();
 
@@ -70,7 +70,7 @@ public class UserDAOSQLite implements IUserDAO{
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getToken_access());
+            preparedStatement.setString(2, user.getTokenAccess());
             preparedStatement.setInt(3, id_User);
 
             int rowsAffected = preparedStatement.executeUpdate();

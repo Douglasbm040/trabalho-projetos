@@ -30,7 +30,7 @@ public class NotificationDAOSQLite implements INotificationDAO{
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, notification.getContent());
             //preparedStatement.setDate(2, notification.getDataEnvio());
-            preparedStatement.setInt(3, notification.getId_receptor());
+            preparedStatement.setInt(3, notification.getIdReceptor());
 
             int rowsAffected = preparedStatement.executeUpdate();
 
@@ -79,7 +79,7 @@ public class NotificationDAOSQLite implements INotificationDAO{
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, notification.getContent());
             //preparedStatement.setString(2, notification.getDataEnvio());
-            preparedStatement.setInt(3, notification.getId_receptor());
+            preparedStatement.setInt(3, notification.getIdReceptor());
 
             int rowsAffected = preparedStatement.executeUpdate();
 
@@ -114,7 +114,7 @@ public class NotificationDAOSQLite implements INotificationDAO{
         String sql = "DELETE FROM NOTIFICATION WHERE ID_USER = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, notification.getId_receptor());
+            preparedStatement.setInt(1, notification.getIdReceptor());
 
             int rowsAffected = preparedStatement.executeUpdate();
 

@@ -4,10 +4,7 @@
  */
 package repository.Logs.Adapter;
 
-import repository.Logs.Adapted.LogCSV;
-
 /**
- *
  * @author dougl
  */
 public class LogCSVAdapter implements ILogMethod {
@@ -18,11 +15,13 @@ public class LogCSVAdapter implements ILogMethod {
     }
 
     @Override
-    public void saveLog(String log) {
-        throw new UnsupportedOperationException("Not supported yet.");     }
+    public void saveLog(String message) {
+        log.save(message);
+    }
 
     @Override
-    public void getRegisterLog() {
-        throw new UnsupportedOperationException("Not supported yet.");    }
-    
+    public String getRegisterLog() {
+        return log.get();
+    }
+
 }

@@ -10,13 +10,13 @@ package model;
  */
 public class User {
     private String name;
-    private String token_access;
-    private int tag_access;
+    private String tokenAccess;
+    private int tagAccess;
 
-    public User(String name, String token_access, int tag_access) {
+    public User(String name, String tokenAccess, int tagAccess) {
         this.name = name;
-        this.token_access = token_access;
-        this.tag_access = tag_access;
+        this.tokenAccess = tokenAccess;
+        this.tagAccess = tagAccess;
     }
 
     public String getName() {
@@ -27,20 +27,20 @@ public class User {
         this.name = name;
     }
 
-    public String getToken_access() {
-        return token_access;
+    public String getTokenAccess() {
+        return tokenAccess;
     }
 
-    public void setToken_access(String token_access) {
-        this.token_access = token_access;
+    public void setTokenAccess(String tokenAccess) {
+        this.tokenAccess = tokenAccess;
     }
 
-    public int getTag_access() {
-        return tag_access;
+    public int getTagAccess() {
+        return tagAccess;
     }
 
-    public void setTag_access(int tag_access) {
-        this.tag_access = tag_access;
+    public void setTagAccess(int tagAccess) {
+        this.tagAccess = tagAccess;
     }
 
     
