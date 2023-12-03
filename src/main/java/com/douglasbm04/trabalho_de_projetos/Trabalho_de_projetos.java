@@ -7,6 +7,7 @@ package com.douglasbm04.trabalho_de_projetos;
 
 
 import model.Notification;
+import presenter.LoginPresenter;
 import repository.Datasource.DAO.NotificationDAO.INotificationDAO;
 import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
 
@@ -29,6 +30,7 @@ public class Trabalho_de_projetos {
         //A.updateUser(n, 1);
         //A.deleteUserALL();
         A.SelectUserALL(n);*/
+        LoginPresenter lp = new LoginPresenter();
     }
    
 }
