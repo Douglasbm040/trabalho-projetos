@@ -11,8 +11,16 @@ import model.User;
  * @author dougl
  */
 public interface IUserDAO {
+
     public void insertUser(User user);
-     public void SelectUserALL(User user);
-     public void updateUser(User user, int id_User);
-      public void deleteUser(int userId);
+    
+    public User selectById(int userId);
+    
+    public void selectUserAll(User user);
+
+    public void updateUser(User user, int userId);
+
+    public void deleteUser(int userId);
+    
+    public void deleteUserAll();
 }

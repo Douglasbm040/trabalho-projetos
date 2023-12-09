@@ -5,8 +5,11 @@
 package presenter;
 
 import java.awt.Cursor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import presenter.strategy.PrincipalPresenterUser;
 import view.LoginView;
 
 /**
@@ -15,8 +18,9 @@ import view.LoginView;
  */
 public class LoginPresenter {
     private LoginView view;
-
-    public LoginPresenter() {
+    private static LoginPresenter presenter;
+    
+    private LoginPresenter() {
         this.view = new LoginView();
         view.setVisible(true);
         
@@ -24,11 +28,25 @@ public class LoginPresenter {
     }
     
     public void configuraTela(){
-        view.getLblNovaConta().addMouseListener(new MouseAdapter() {
+        view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
-            public void mouseEntered(MouseEvent e) {
-                view.getLblNovaConta().setCursor(new Cursor(Cursor.HAND_CURSOR));
+            public void actionPerformed(ActionEvent e) {
+                new PrincipalPresenterUser();
+                view.dispose();
             }
         });
+        view.getLblNovaConta().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                CadastroPresenter.getInstance();
+            }
+        });
+    }
+    
+    public static LoginPresenter getInstance(){
+        if(presenter == null){
+            return new LoginPresenter();
+        }
+        return presenter;
     }
 }

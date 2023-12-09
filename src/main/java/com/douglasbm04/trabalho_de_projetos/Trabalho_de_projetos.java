@@ -30,7 +30,7 @@ public class Trabalho_de_projetos {
         //A.updateUser(n, 1);
         //A.deleteUserALL();
         A.SelectUserALL(n);*/
-        LoginPresenter lp = new LoginPresenter();
+        LoginPresenter lp = LoginPresenter.getInstance();
     }
    
 }
