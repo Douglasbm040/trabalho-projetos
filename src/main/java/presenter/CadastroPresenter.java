@@ -38,7 +38,7 @@ public class CadastroPresenter {
             }
         });
         UserDAOSQLite UserDAO = new UserDAOSQLite();
-        List<User> lista = UserDAO.selectUserAll();
+        List<User> listUser = UserDAO.selectUserAll();
         view.getBtnCriarConta().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,7 +46,7 @@ public class CadastroPresenter {
                    JOptionPane.showMessageDialog(null, "Campo usuarios está vazio !");
                     return; 
                 }
-                for (User usuario : lista) {
+                for (User usuario : listUser) {
                     System.out.println(usuario.getName());
                     if (view.getTxtUsuario().getText().equals(usuario.getName())) {
                         JOptionPane.showMessageDialog(null, "Este Usuario já está em uso !");
@@ -56,13 +56,13 @@ public class CadastroPresenter {
                 final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
                 if (retornoValidador.isEmpty()) {
-                    if (lista.isEmpty()) {
+                    if (listUser.isEmpty()) {
                         UserDAO.insertUser(new User(view.getTxtNome().getText(), view.getTxtSenha().getText(), 1));
                         JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                         view.dispose();
                         return;
                     }
-                    UserDAO.insertUser(new User(view.getTxtNome().getText(), view.getTxtSenha().getText(), 2));
+                    UserDAO.insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 2));
                         JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                         view.dispose();
                         return;

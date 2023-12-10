@@ -15,6 +15,8 @@ import Service.validation.Adapter.FactoryValidationMethodExtern;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.User;
+import repository.Datasource.DAO.UserDAO.UserDAOSQLite;
 import view.LoginView;
 
 /**
@@ -37,12 +39,37 @@ public class LoginPresenter {
         view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                UserDAOSQLite UserDAO = new UserDAOSQLite();
+                List<User> listUser = UserDAO.selectUserAll();
                 final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
+                if (view.getTxtUsuario().getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Campo usuarios está vazio !");
+                    return;
+                }
                 if (retornoValidador.isEmpty()) {
-                 PrincipalPresenterUser.getInstance();
-                 //PrincipalPresenterAdmin.getInstance();
-                    view.dispose();
+                    for (User usuario : listUser) {
+                        if (view.getTxtUsuario().getText().equals(usuario.getName()) && view.getTxtSenha().getText().equals(usuario.getTokenAccess())) {
+                            switch (usuario.getTagAccess()) {
+                                case 0:
+                                    JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
+                                    break;
+                                case 1:
+                                    PrincipalPresenterAdmin.getInstance();
+                                    view.dispose();
+                                    break;
+                                case 2:
+                                    PrincipalPresenterUser.getInstance();
+                                    view.dispose();
+                                    break;
+                                default:
+                                    JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Usuário não cadastrado !");
+                        }
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(null, retornoValidador.get(0));
