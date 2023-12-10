@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view.user;
+package view.admin;
 
+import view.user.*;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
@@ -17,12 +18,12 @@ import javax.swing.JPanel;
  *
  * @author isaac
  */
-public class PrincipalViewUser extends javax.swing.JFrame {
+public class PrincipalViewAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form PrincipalView
      */
-    public PrincipalViewUser() {
+    public PrincipalViewAdmin() {
         initComponents();
     }
 
@@ -42,11 +43,11 @@ public class PrincipalViewUser extends javax.swing.JFrame {
         btnNotificacao = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuOpcoes = new javax.swing.JMenu();
-        menuUsuario = new javax.swing.JMenuItem();
+        menuGerenciarUsuarios = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Sistema Usuario");
+        setTitle("Sistema Admin");
         setExtendedState(MAXIMIZED_BOTH);
 
         dkstpPrincipal.setBackground(new java.awt.Color(102, 102, 102));
@@ -100,8 +101,8 @@ public class PrincipalViewUser extends javax.swing.JFrame {
 
         menuOpcoes.setText("Opções");
 
-        menuUsuario.setText("Usuario");
-        menuOpcoes.add(menuUsuario);
+        menuGerenciarUsuarios.setText("Gerenciar Usuarios");
+        menuOpcoes.add(menuGerenciarUsuarios);
 
         menuSair.setText("Logout");
         menuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -148,9 +149,9 @@ public class PrincipalViewUser extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblTipoUsuarioRodape;
     private javax.swing.JLabel lblUsuarioRodape;
+    private javax.swing.JMenuItem menuGerenciarUsuarios;
     private javax.swing.JMenu menuOpcoes;
     private javax.swing.JMenuItem menuSair;
-    private javax.swing.JMenuItem menuUsuario;
     private javax.swing.JPanel pnlRodape;
     // End of variables declaration//GEN-END:variables
     
@@ -180,7 +181,7 @@ public class PrincipalViewUser extends javax.swing.JFrame {
     }
 
     public JMenuItem getMenuEditar() {
-        return menuUsuario;
+        return menuGerenciarUsuarios;
     }
 
     public JMenu getMenuOpcoes() {
@@ -191,8 +192,8 @@ public class PrincipalViewUser extends javax.swing.JFrame {
         return pnlRodape;
     }
 
-    public JMenuItem getMenuUsuario() {
-        return menuUsuario;
+    public JMenuItem getMenuGerenciarUsuarios() {
+        return menuGerenciarUsuarios;
     }
     
     

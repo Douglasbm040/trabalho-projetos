@@ -2,18 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package view.user;
+package view.admin;
+
+import view.user.*;
 
 /**
  *
  * @author isaac
  */
-public class ConfiguracaoLogViewUser extends javax.swing.JInternalFrame {
+public class ConfiguracaoLogViewAdmin extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ManterUsuariosView
      */
-    public ConfiguracaoLogViewUser() {
+    public ConfiguracaoLogViewAdmin() {
         initComponents();
     }
 

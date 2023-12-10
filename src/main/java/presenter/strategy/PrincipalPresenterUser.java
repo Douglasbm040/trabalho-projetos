@@ -70,7 +70,7 @@ public class PrincipalPresenterUser implements IPresenterUser {
     
     @Override
     public PrincipalPresenterUser getPresenter() {
-        return getInstance(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return getInstance();
     }
     
 }

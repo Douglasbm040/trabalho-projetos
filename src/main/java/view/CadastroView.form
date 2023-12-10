@@ -26,13 +26,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnCriarConta" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblSenha" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNome" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnCriarConta" min="-2" pref="144" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnFechar" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="55" max="32767" attributes="0"/>
           </Group>
@@ -54,7 +58,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtSenha" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnCriarConta" min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnFechar" max="32767" attributes="0"/>
+                  <Component id="btnCriarConta" pref="33" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -85,6 +92,11 @@
     <Component class="javax.swing.JButton" name="btnCriarConta">
       <Properties>
         <Property name="text" type="java.lang.String" value="Criar conta"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnFechar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -2,18 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package view.user;
+package view.admin;
+
+import view.user.*;
 
 /**
  *
  * @author isaac
  */
-public class NotificacoesViewUser extends javax.swing.JInternalFrame {
+public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NotificacoesViewUser
      */
-    public NotificacoesViewUser() {
+    public NotificacoesViewAdmin() {
         initComponents();
     }
 
