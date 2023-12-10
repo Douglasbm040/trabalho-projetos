@@ -4,7 +4,8 @@
  */
 package repository.Datasource.Factories.UserFactory;
 
-import repository.Datasource.DAO.NotificationDAO.UserDAO.IUserDAO;
+
+import repository.Datasource.DAO.UserDAO.IUserDAO;
 
 /**
  *

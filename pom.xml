@@ -28,7 +28,8 @@
 	    <version>master-c949bd44ba-1</version>
             <type>jar</type>
         </dependency>
-</dependencies>
+    	     
+    	</dependencies>
 <repositories>
      <repository>
         <id>jitpack.io</id>

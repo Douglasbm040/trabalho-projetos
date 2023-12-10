@@ -8,8 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.User;
-import repository.Datasource.DAO.NotificationDAO.UserDAO.IUserDAO;
 import repository.Datasource.DatabaseSQLiteConnection;
 
 public class UserDAOSQLite implements IUserDAO {
@@ -68,7 +69,8 @@ public class UserDAOSQLite implements IUserDAO {
     }
     
     @Override
-    public void selectUserAll(User user) {
+    public List<User> selectUserAll() {
+        List<User> users = new ArrayList<>();
 
         String sql = "SELECT * FROM USER";
 
@@ -80,12 +82,7 @@ public class UserDAOSQLite implements IUserDAO {
 
             // Processar os resultados
             while (resultSet.next()) {
-                int userId = resultSet.getInt("ID_USER");
-                String name = resultSet.getString("NAME");
-                String token = resultSet.getString("TOKEN_ACCESS");
-
-                // Exibir os resultados (você pode fazer o que quiser com esses dados)
-                System.out.println("User ID: " + userId + ", Name: " + name + ", Token: " + token);
+                users.add(new User(resultSet.getString("NAME"),resultSet.getString("TOKEN_ACCESS"),resultSet.getInt("ID_USER")));
             }
             System.out.println("User ID:  Token: " + resultSet.next());
 
@@ -94,6 +91,7 @@ public class UserDAOSQLite implements IUserDAO {
             e.printStackTrace();
 
         }
+        return users;
     }
     
     @Override
