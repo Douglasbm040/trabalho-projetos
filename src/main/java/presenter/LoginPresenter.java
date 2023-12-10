@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import presenter.strategy.PrincipalPresenterUser;
+import Service.validation.Adapter.FactoryValidationMethodExtern;
+
+import java.util.List;
+import javax.swing.JOptionPane;
 import view.LoginView;
 
 /**
@@ -17,34 +21,46 @@ import view.LoginView;
  * @author isaac
  */
 public class LoginPresenter {
+
     private LoginView view;
     private static LoginPresenter presenter;
-    
+
     private LoginPresenter() {
         this.view = new LoginView();
         view.setVisible(true);
-        
+
         configuraTela();
     }
-    
-    public void configuraTela(){
+
+    public void configuraTela() {
         view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PrincipalPresenterUser.getInstance();
-                view.dispose();
+                ///final UserDAOSQLiteFactory userDAO = UserDAOSQLiteFactory();
+                final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
+                List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
+                if (retornoValidador.isEmpty()) {
+                   // if(){
+                      PrincipalPresenterUser.getInstance();
+                    view.dispose();
+                    //}
+                  
+                } else {
+                    JOptionPane.showMessageDialog(null, retornoValidador.get(0));
+                }
+
             }
         });
         view.getLblNovaConta().addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
                 CadastroPresenter.getInstance();
             }
         });
     }
-    
-    public static LoginPresenter getInstance(){
-        if(presenter == null){
+
+    public static LoginPresenter getInstance() {
+        if (presenter == null) {
             return new LoginPresenter();
         }
         return presenter;

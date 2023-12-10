@@ -13,10 +13,10 @@ import presenter.strategy.PrincipalPresenterUser;
  * @author isaac
  */
 public class ExibeUsuarioPresenterState extends PresenterState {
-
+   
     public ExibeUsuarioPresenterState(IPresenterUser<ExibeUsuarioPresenterUser> presenter) {
         super(presenter);
-
+        
         principalPresenter.getInstance().getView().getDkstpPrincipal().add(presenter.getPresenter().getView());
         presenter.getPresenter().getView().setVisible(true);
     }
