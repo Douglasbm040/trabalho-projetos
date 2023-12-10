@@ -4,6 +4,7 @@
  */
 package state.user;
 
+import presenter.strategy.user.ExibeNotificacaoPresenterUser;
 import presenter.strategy.user.ExibeUsuarioPresenterUser;
 import presenter.strategy.user.IPresenterUser;
 import presenter.strategy.user.PrincipalPresenterUser;
@@ -18,9 +19,9 @@ public class ExibeUsuarioPresenterStateUser extends PresenterStateUser {
         super(presenter);
         principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView(),0);
         presenter.getView().setVisible(true);
-   
     }
-
+    
+    @Override
     public void fechar() { 
         principalPresenter.getInstance().setState(new InicialPresenterStateUser(principalPresenter.getInstance()));
         presenter.getView().dispose();

@@ -28,6 +28,10 @@ public abstract class PresenterStateUser {
         throw new RuntimeException("Não é possível ver notificacoes");
     }
     
+    public void exibeNotificacao(){
+        throw new RuntimeException("Não é possível ver a notificacao");
+    }
+    
     public void fechar(){
         throw new RuntimeException("Não é possível fechar a tela");
     }

@@ -4,32 +4,30 @@
  */
 package presenter.strategy.user;
 
-import java.awt.Container;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import presenter.LoginPresenter;
-import state.user.ExibeUsuarioPresenterStateUser;
+import state.user.ExibeNotificacaoPresenterStateUser;
 import state.user.PresenterStateUser;
-import view.user.ExibeUsuarioViewUser;
+import view.user.DetalhesNotificacaoViewUser;
 
 /**
  *
  * @author isaac
  */
-public class ExibeUsuarioPresenterUser extends IPresenterUser {
-    private ExibeUsuarioViewUser view;
-    private PresenterStateUser state;
+public class ExibeNotificacaoPresenterUser extends IPresenterUser {
 
-    public ExibeUsuarioPresenterUser() {
-        this.view = new ExibeUsuarioViewUser();
-        this.state = new ExibeUsuarioPresenterStateUser(this);
+    private DetalhesNotificacaoViewUser view;
+    private PresenterStateUser state;
+    
+    public ExibeNotificacaoPresenterUser() {
+        view = new DetalhesNotificacaoViewUser();
+        state = new ExibeNotificacaoPresenterStateUser(this);
 
         configuraTela();
 
         view.setVisible(true);
     }
-
+   
     @Override
     public void setState(PresenterStateUser state) {
         this.state = state;
@@ -37,15 +35,12 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser {
 
     @Override
     public void configuraTela() {
-        view.getBtnFechar().addActionListener(
-        new ActionListener() {
+        view.getBtnFechar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               state.fechar();
+                state.fechar();
             }
-            
-        } );
-      view.getTxtNome().setText("isaack");
+        });
     }
 
     @Override

@@ -19,7 +19,7 @@ import view.user.PrincipalViewUser;
  */
 public class PrincipalPresenterUser extends IPresenterUser {
 
-     private static PrincipalPresenterUser instance;
+    private static PrincipalPresenterUser instance;
 
     private PrincipalViewUser view;
     private PresenterStateUser state;
@@ -28,6 +28,7 @@ public class PrincipalPresenterUser extends IPresenterUser {
         this.view = new PrincipalViewUser();
         this.state = new InicialPresenterStateUser(this);
         configuraTela();
+        view.setVisible(true);
     }
 
     public static PrincipalPresenterUser getInstance() {
@@ -55,21 +56,19 @@ public class PrincipalPresenterUser extends IPresenterUser {
         view.getMenuUsuario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               state.manterUsuarios();  
+                state.manterUsuarios();
             }
         });
-        view.setVisible(true);
+        view.getBtnNotificacao().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.verNotificacoes();
+            }
+        });
     }
 
-    
     public PrincipalViewUser getViewPrin() {
         return view;
     }
 
-    
-
-   
-    
-    
-    
 }

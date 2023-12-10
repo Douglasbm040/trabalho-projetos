@@ -13,8 +13,8 @@ import state.user.PresenterStateUser;
  * @author isaac
  */
 public abstract class IPresenterUser {
-    abstract public void setState(PresenterStateUser state);
-    abstract public void configuraTela();
+    public abstract void setState(PresenterStateUser state);
+    public abstract void configuraTela();
     public javax.swing.JInternalFrame getView(){
           throw new RuntimeException("deve possuir JInternalFrame");
     }
