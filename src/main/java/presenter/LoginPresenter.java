@@ -9,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import presenter.strategy.PrincipalPresenterUser;
+import presenter.strategy.admin.PrincipalPresenterAdmin;
+import presenter.strategy.user.PrincipalPresenterUser;
 import Service.validation.Adapter.FactoryValidationMethodExtern;
 
 import java.util.List;
@@ -36,19 +37,8 @@ public class LoginPresenter {
         view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ///final UserDAOSQLiteFactory userDAO = UserDAOSQLiteFactory();
-                final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
-                List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
-                if (retornoValidador.isEmpty()) {
-                   // if(){
-                      PrincipalPresenterUser.getInstance();
-                    view.dispose();
-                    //}
-                  
-                } else {
-                    JOptionPane.showMessageDialog(null, retornoValidador.get(0));
-                }
-
+                PrincipalPresenterUser.getInstance();
+                view.dispose();
             }
         });
         view.getLblNovaConta().addMouseListener(new MouseAdapter() {

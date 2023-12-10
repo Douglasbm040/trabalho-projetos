@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package state;
+package state.user;
 
-import presenter.strategy.PrincipalPresenterAdmin;
-import presenter.strategy.IPresenterUser;
-import presenter.strategy.PrincipalPresenterUser;
+import presenter.strategy.admin.PrincipalPresenterAdmin;
+import presenter.strategy.user.IPresenterUser;
+import presenter.strategy.user.PrincipalPresenterUser;
 
 /**
  *
  * @author isaac
  */
-public abstract class PresenterState {
+public abstract class PresenterStateUser {
     protected IPresenterUser presenter;
     protected PrincipalPresenterUser principalPresenter;
     
-    public PresenterState (IPresenterUser presenter){
+    public PresenterStateUser (IPresenterUser presenter){
         this.presenter = presenter;
     }
     

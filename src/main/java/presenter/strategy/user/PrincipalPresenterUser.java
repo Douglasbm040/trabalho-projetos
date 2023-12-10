@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package presenter.strategy;
+package presenter.strategy.user;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import presenter.LoginPresenter;
-import state.InicialPresenterState;
-import state.PresenterState;
+import state.user.InicialPresenterStateUser;
+import state.user.PresenterStateUser;
 import view.user.ExibeUsuarioViewUser;
 import view.user.PrincipalViewUser;
 
@@ -22,11 +22,11 @@ public class PrincipalPresenterUser implements IPresenterUser {
      private static PrincipalPresenterUser instance;
 
     private PrincipalViewUser view;
-    private PresenterState state;
+    private PresenterStateUser state;
 
     private PrincipalPresenterUser() {
         this.view = new PrincipalViewUser();
-        this.state = new InicialPresenterState(this);
+        this.state = new InicialPresenterStateUser(this);
 
         configuraTela();
     }
@@ -39,7 +39,7 @@ public class PrincipalPresenterUser implements IPresenterUser {
     }
 
     @Override
-    public void setState(PresenterState state) {
+    public void setState(PresenterStateUser state) {
         this.state = state;
     }
 

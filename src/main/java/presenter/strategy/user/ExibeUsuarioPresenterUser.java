@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package presenter.strategy;
+package presenter.strategy.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import presenter.LoginPresenter;
-import state.PresenterState;
+import state.user.PresenterStateUser;
 import view.user.ExibeUsuarioViewUser;
 
 /**
@@ -16,7 +16,7 @@ import view.user.ExibeUsuarioViewUser;
  */
 public class ExibeUsuarioPresenterUser implements IPresenterUser<ExibeUsuarioPresenterUser> {
     private ExibeUsuarioViewUser view;
-    private PresenterState state;
+    private PresenterStateUser state;
 
     public ExibeUsuarioPresenterUser() {
         this.view = new ExibeUsuarioViewUser();
@@ -27,7 +27,7 @@ public class ExibeUsuarioPresenterUser implements IPresenterUser<ExibeUsuarioPre
     }
 
     @Override
-    public void setState(PresenterState state) {
+    public void setState(PresenterStateUser state) {
         this.state = state;
     }
 
