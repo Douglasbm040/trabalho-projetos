@@ -16,16 +16,14 @@ public class ExibeUsuarioPresenterState extends PresenterState {
 
     public ExibeUsuarioPresenterState(IPresenterUser<ExibeUsuarioPresenterUser> presenter) {
         super(presenter);
-        ExibeUsuarioPresenterUser p = new ExibeUsuarioPresenterUser();
-        System.out.println("passou aqui");
-        principalPresenter.getView().add(p.getView());
-        System.out.println("passou aqui2");
-        p.getView().setVisible(true);
+
+        principalPresenter.getInstance().getView().getDkstpPrincipal().add(presenter.getPresenter().getView());
+        presenter.getPresenter().getView().setVisible(true);
     }
     
     @Override
     public void fechar() {
-        presenter.setState(new InicialPresenterState(new PrincipalPresenterUser()));
+        presenter.setState(new InicialPresenterState(PrincipalPresenterUser.getInstance()));
     }
     
 }

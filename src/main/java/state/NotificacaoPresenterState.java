@@ -18,6 +18,6 @@ public class NotificacaoPresenterState extends PresenterState {
     
     @Override
     public void fechar(){
-        presenter.setState(new InicialPresenterState(new PrincipalPresenterUser()));
+        presenter.setState(new InicialPresenterState(PrincipalPresenterUser.getInstance()));
     }
 }

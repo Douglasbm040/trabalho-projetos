@@ -14,7 +14,7 @@ import view.user.ExibeUsuarioViewUser;
  *
  * @author isaac
  */
-public class ExibeUsuarioPresenterUser implements IPresenterUser {
+public class ExibeUsuarioPresenterUser implements IPresenterUser<ExibeUsuarioPresenterUser> {
     private ExibeUsuarioViewUser view;
     private PresenterState state;
 
@@ -36,14 +36,16 @@ public class ExibeUsuarioPresenterUser implements IPresenterUser {
         
     }
 
-    @Override
-    public ExibeUsuarioPresenterUser getPresenter() {
-        return this;
-    }
+   
 
     public ExibeUsuarioViewUser getView() {
         return view;
     }
+
+    @Override
+    public ExibeUsuarioPresenterUser getPresenter() {
+        return this;
+   }
     
     
 }

@@ -20,6 +20,7 @@ public class InicialPresenterState extends PresenterState {
     }
     
     public void manterUsuarios(){
+       
         presenter.setState(new ExibeUsuarioPresenterState(new ExibeUsuarioPresenterUser()));
     }
     
@@ -28,6 +29,6 @@ public class InicialPresenterState extends PresenterState {
     }
     
     public void fechar(){
-        presenter.setState(new InicialPresenterState(new PrincipalPresenterUser()));
+        presenter.setState(new InicialPresenterState(PrincipalPresenterUser.getInstance()));
     }
 }

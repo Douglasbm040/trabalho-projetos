@@ -4,16 +4,22 @@
  */
 package repository.Logs.Adapter;
 
-/**
+/*
  *
  * @author dougl
  */
 class LogCSV {
      public void save (String message){
-
+         
      }
 
      public String get () {
           return "";
      }
+
+    public LogCSV() {
+        
+    
+    }
+     
 }

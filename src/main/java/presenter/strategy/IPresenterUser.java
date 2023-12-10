@@ -14,4 +14,6 @@ public interface IPresenterUser<T> {
     void setState(PresenterState state);
     void configuraTela();
     T getPresenter();
+
+
 }

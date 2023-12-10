@@ -19,14 +19,23 @@ import view.user.PrincipalViewUser;
  */
 public class PrincipalPresenterUser implements IPresenterUser {
 
+     private static PrincipalPresenterUser instance;
+
     private PrincipalViewUser view;
     private PresenterState state;
 
-    public PrincipalPresenterUser() {
+    private PrincipalPresenterUser() {
         this.view = new PrincipalViewUser();
         this.state = new InicialPresenterState(this);
 
         configuraTela();
+    }
+
+    public static PrincipalPresenterUser getInstance() {
+        if (instance == null) {
+            instance = new PrincipalPresenterUser();
+        }
+        return instance;
     }
 
     @Override
@@ -53,14 +62,15 @@ public class PrincipalPresenterUser implements IPresenterUser {
         view.setVisible(true);
     }
 
-    @Override
-    public PrincipalPresenterUser getPresenter() {
-        return this;
-    }
+    
 
     public PrincipalViewUser getView() {
         return view;
     }
     
+    @Override
+    public PrincipalPresenterUser getPresenter() {
+        return getInstance(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

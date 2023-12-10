@@ -31,7 +31,7 @@ public class LoginPresenter {
         view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new PrincipalPresenterUser();
+                PrincipalPresenterUser.getInstance();
                 view.dispose();
             }
         });
