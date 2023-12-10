@@ -12,21 +12,18 @@ import presenter.strategy.user.PrincipalPresenterUser;
  *
  * @author isaac
  */
-public class ExibeUsuarioPresenterState extends PresenterState {
-   
-    public ExibeUsuarioPresenterState(IPresenterUser<ExibeUsuarioPresenterUser> presenter) {
 public class ExibeUsuarioPresenterStateUser extends PresenterStateUser {
 
     public ExibeUsuarioPresenterStateUser(IPresenterUser<ExibeUsuarioPresenterUser> presenter) {
         super(presenter);
-        
+
         principalPresenter.getInstance().getView().getDkstpPrincipal().add(presenter.getPresenter().getView());
         presenter.getPresenter().getView().setVisible(true);
     }
-    
+
     @Override
     public void fechar() {
         presenter.setState(new InicialPresenterStateUser(PrincipalPresenterUser.getInstance()));
     }
-    
+
 }

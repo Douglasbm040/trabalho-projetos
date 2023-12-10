@@ -37,8 +37,15 @@ public class LoginPresenter {
         view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PrincipalPresenterUser.getInstance();
-                view.dispose();
+                final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
+                List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
+                if (retornoValidador.isEmpty()) {
+                    PrincipalPresenterAdmin.getInstance();
+                    view.dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, retornoValidador.get(0));
+                }
             }
         });
         view.getLblNovaConta().addMouseListener(new MouseAdapter() {
