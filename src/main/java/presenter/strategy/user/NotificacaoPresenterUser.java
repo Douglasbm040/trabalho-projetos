@@ -4,13 +4,14 @@
  */
 package presenter.strategy.user;
 
+import java.awt.Container;
 import state.user.PresenterStateUser;
 
 /**
  *
  * @author isaac
  */
-public class NotificacaoPresenterUser implements IPresenterUser {
+public class NotificacaoPresenterUser extends IPresenterUser {
 
     @Override
     public void setState(PresenterStateUser state) {
@@ -23,8 +24,10 @@ public class NotificacaoPresenterUser implements IPresenterUser {
     }
 
     @Override
-    public NotificacaoPresenterUser getPresenter() {
-        return this; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public javax.swing.JInternalFrame getView() {
+     
+        return null;
+     
     }
     
     

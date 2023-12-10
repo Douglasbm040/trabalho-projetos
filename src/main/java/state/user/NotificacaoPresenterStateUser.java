@@ -13,13 +13,14 @@ import presenter.strategy.user.PrincipalPresenterUser;
  * @author isaac
  */
 public class NotificacaoPresenterStateUser extends PresenterStateUser {
-    public NotificacaoPresenterStateUser (IPresenterUser<ExibeUsuarioPresenterUser> presenter){
+    public NotificacaoPresenterStateUser (IPresenterUser presenter){
         super(presenter);
         
     }
     
-    @Override
+    
     public void fechar(){
         presenter.setState(new InicialPresenterStateUser(PrincipalPresenterUser.getInstance()));
+        presenter.getView().dispose();
     }
 }

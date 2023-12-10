@@ -4,16 +4,18 @@
  */
 package presenter.strategy.user;
 
+import java.awt.Container;
+import java.awt.Frame;
 import state.user.PresenterStateUser;
 
 /**
  *
  * @author isaac
  */
-public interface IPresenterUser<T> {
-    void setState(PresenterStateUser state);
-    void configuraTela();
-    T getPresenter();
-
-
+public abstract class IPresenterUser {
+    abstract public void setState(PresenterStateUser state);
+    abstract public void configuraTela();
+    public javax.swing.JInternalFrame getView(){
+          throw new RuntimeException("deve possuir JInternalFrame");
+    }
 }

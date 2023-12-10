@@ -13,9 +13,10 @@ import presenter.strategy.user.PrincipalPresenterUser;
  *
  * @author isaac
  */
+/*
 public class DetalharUsuarioPresenterStateAdmin extends PresenterStateUser {
 
-    public DetalharUsuarioPresenterStateAdmin(IPresenterUser<ExibeUsuarioPresenterUser> presenter) {
+    public DetalharUsuarioPresenterStateAdmin(IPresenter presenter) {
         super(presenter);
 
         principalPresenter.getInstance().getView().getDkstpPrincipal().add(presenter.getPresenter().getView());
@@ -28,3 +29,4 @@ public class DetalharUsuarioPresenterStateAdmin extends PresenterStateUser {
     }
     
 }
+*/

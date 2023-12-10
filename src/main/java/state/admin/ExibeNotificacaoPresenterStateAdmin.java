@@ -12,7 +12,7 @@ import presenter.strategy.user.PrincipalPresenterUser;
 /**
  *
  * @author isaac
- */
+ *//*
 public class ExibeNotificacaoPresenterStateAdmin extends PresenterStateUser {
     public ExibeNotificacaoPresenterStateAdmin (IPresenterUser<ExibeUsuarioPresenterUser> presenter){
         super(presenter);
@@ -24,3 +24,4 @@ public class ExibeNotificacaoPresenterStateAdmin extends PresenterStateUser {
         presenter.setState(new InicialPresenterStateUser(PrincipalPresenterUser.getInstance()));
     }
 }
+*/

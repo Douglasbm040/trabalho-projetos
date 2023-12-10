@@ -4,9 +4,12 @@
  */
 package presenter.strategy.user;
 
+import java.awt.Container;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import presenter.LoginPresenter;
+import state.user.ExibeUsuarioPresenterStateUser;
 import state.user.PresenterStateUser;
 import view.user.ExibeUsuarioViewUser;
 
@@ -14,12 +17,13 @@ import view.user.ExibeUsuarioViewUser;
  *
  * @author isaac
  */
-public class ExibeUsuarioPresenterUser implements IPresenterUser<ExibeUsuarioPresenterUser> {
+public class ExibeUsuarioPresenterUser extends IPresenterUser {
     private ExibeUsuarioViewUser view;
     private PresenterStateUser state;
 
     public ExibeUsuarioPresenterUser() {
         this.view = new ExibeUsuarioViewUser();
+        this.state = new ExibeUsuarioPresenterStateUser(this);
 
         configuraTela();
 
@@ -33,19 +37,26 @@ public class ExibeUsuarioPresenterUser implements IPresenterUser<ExibeUsuarioPre
 
     @Override
     public void configuraTela() {
-        
+        view.getBtnFechar().addActionListener(
+        new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               state.fechar();
+            }
+            
+        } );
+      view.getTxtNome().setText("isaack");
     }
 
    
 
-    public ExibeUsuarioViewUser getView() {
+    
+    @Override
+    public javax.swing.JInternalFrame getView() {
         return view;
     }
 
-    @Override
-    public ExibeUsuarioPresenterUser getPresenter() {
-        return this;
-   }
+
     
     
 }

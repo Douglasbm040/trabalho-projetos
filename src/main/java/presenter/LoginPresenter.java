@@ -40,7 +40,8 @@ public class LoginPresenter {
                 final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
                 if (retornoValidador.isEmpty()) {
-                    PrincipalPresenterAdmin.getInstance();
+                 PrincipalPresenterUser.getInstance();
+                 //PrincipalPresenterAdmin.getInstance();
                     view.dispose();
 
                 } else {

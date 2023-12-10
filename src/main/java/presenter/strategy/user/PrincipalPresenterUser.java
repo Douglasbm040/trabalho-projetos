@@ -17,7 +17,7 @@ import view.user.PrincipalViewUser;
  *
  * @author isaac
  */
-public class PrincipalPresenterUser implements IPresenterUser {
+public class PrincipalPresenterUser extends IPresenterUser {
 
      private static PrincipalPresenterUser instance;
 
@@ -27,7 +27,6 @@ public class PrincipalPresenterUser implements IPresenterUser {
     private PrincipalPresenterUser() {
         this.view = new PrincipalViewUser();
         this.state = new InicialPresenterStateUser(this);
-
         configuraTela();
     }
 
@@ -63,14 +62,14 @@ public class PrincipalPresenterUser implements IPresenterUser {
     }
 
     
-
-    public PrincipalViewUser getView() {
+    public PrincipalViewUser getViewPrin() {
         return view;
     }
+
     
-    @Override
-    public PrincipalPresenterUser getPresenter() {
-        return getInstance();
-    }
+
+   
+    
+    
     
 }
