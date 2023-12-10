@@ -4,6 +4,7 @@
  */
 package state;
 
+import presenter.strategy.ExibeUsuarioPresenterUser;
 import presenter.strategy.IPresenterUser;
 import presenter.strategy.PrincipalPresenterUser;
 
@@ -13,8 +14,13 @@ import presenter.strategy.PrincipalPresenterUser;
  */
 public class ExibeUsuarioPresenterState extends PresenterState {
 
-    public ExibeUsuarioPresenterState(IPresenterUser presenter) {
+    public ExibeUsuarioPresenterState(IPresenterUser<ExibeUsuarioPresenterUser> presenter) {
         super(presenter);
+        ExibeUsuarioPresenterUser p = new ExibeUsuarioPresenterUser();
+        System.out.println("passou aqui");
+        principalPresenter.getView().add(p.getView());
+        System.out.println("passou aqui2");
+        p.getView().setVisible(true);
     }
     
     @Override

@@ -6,6 +6,7 @@ package state;
 
 import presenter.strategy.PrincipalPresenterAdmin;
 import presenter.strategy.IPresenterUser;
+import presenter.strategy.PrincipalPresenterUser;
 
 /**
  *
@@ -13,6 +14,7 @@ import presenter.strategy.IPresenterUser;
  */
 public abstract class PresenterState {
     protected IPresenterUser presenter;
+    protected PrincipalPresenterUser principalPresenter;
     
     public PresenterState (IPresenterUser presenter){
         this.presenter = presenter;

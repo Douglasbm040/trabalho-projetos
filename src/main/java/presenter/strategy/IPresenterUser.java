@@ -10,9 +10,8 @@ import state.PresenterState;
  *
  * @author isaac
  */
-public interface IPresenterUser {
+public interface IPresenterUser<T> {
     void setState(PresenterState state);
     void configuraTela();
-    
-    
+    T getPresenter();
 }

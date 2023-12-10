@@ -34,5 +34,16 @@ public class ExibeUsuarioPresenterUser implements IPresenterUser {
     @Override
     public void configuraTela() {
         
-    }  
+    }
+
+    @Override
+    public ExibeUsuarioPresenterUser getPresenter() {
+        return this;
+    }
+
+    public ExibeUsuarioViewUser getView() {
+        return view;
+    }
+    
+    
 }

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import presenter.LoginPresenter;
 import state.InicialPresenterState;
 import state.PresenterState;
+import view.user.ExibeUsuarioViewUser;
 import view.user.PrincipalViewUser;
 
 /**
@@ -46,10 +47,20 @@ public class PrincipalPresenterUser implements IPresenterUser {
         view.getMenuUsuario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               state.manterUsuarios();
+               state.manterUsuarios();  
             }
         });
         view.setVisible(true);
     }
 
+    @Override
+    public PrincipalPresenterUser getPresenter() {
+        return this;
+    }
+
+    public PrincipalViewUser getView() {
+        return view;
+    }
+    
+    
 }
