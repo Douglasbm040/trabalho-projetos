@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.douglasbm04.trabalho_de_projetos;
+package main;
 
 
 
@@ -16,7 +16,7 @@ import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLite
  *
  * @author dougl
  */
-public class Trabalho_de_projetos {
+public class Main {
         
     public static void main(String[] args) {
         //User n = new User("Radyja ","asfAGSJDFGJAGS",2);
