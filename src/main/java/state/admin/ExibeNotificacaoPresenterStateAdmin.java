@@ -12,16 +12,15 @@ import presenter.strategy.user.PrincipalPresenterUser;
 /**
  *
  * @author isaac
- *//*
+ */
 public class ExibeNotificacaoPresenterStateAdmin extends PresenterStateUser {
-    public ExibeNotificacaoPresenterStateAdmin (IPresenterUser<ExibeUsuarioPresenterUser> presenter){
+    public ExibeNotificacaoPresenterStateAdmin (IPresenterUser presenter){
         super(presenter);
         
     }
     
     @Override
     public void fechar(){
-        presenter.setState(new InicialPresenterStateUser(PrincipalPresenterUser.getInstance()));
+        principalPresenter.getInstance().setState(new InicialPresenterStateUser(principalPresenter.getInstance()));
     }
 }
-*/

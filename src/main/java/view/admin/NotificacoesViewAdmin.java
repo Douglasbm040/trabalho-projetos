@@ -4,6 +4,9 @@
  */
 package view.admin;
 
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import view.user.*;
 
 /**
@@ -29,7 +32,7 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblNotificacoes = new javax.swing.JTable();
         btnAbrirNotificacao = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
 
@@ -37,7 +40,7 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
         setTitle("Notificações");
         setFrameIcon(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNotificacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -60,13 +63,13 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        tblNotificacoes.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tblNotificacoes);
+        tblNotificacoes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tblNotificacoes.getColumnModel().getColumnCount() > 0) {
+            tblNotificacoes.getColumnModel().getColumn(0).setResizable(false);
+            tblNotificacoes.getColumnModel().getColumn(1).setResizable(false);
+            tblNotificacoes.getColumnModel().getColumn(2).setResizable(false);
         }
 
         btnAbrirNotificacao.setText("Abrir");
@@ -108,6 +111,24 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAbrirNotificacao;
     private javax.swing.JButton btnFechar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblNotificacoes;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnAbrirNotificacao() {
+        return btnAbrirNotificacao;
+    }
+
+    public JButton getBtnFechar() {
+        return btnFechar;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JTable getTblNotificacoes() {
+        return tblNotificacoes;
+    }
+    
+    
 }

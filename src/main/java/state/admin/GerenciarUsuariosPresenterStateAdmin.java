@@ -4,6 +4,7 @@
  */
 package state.admin;
 
+import presenter.strategy.admin.ExibeUsuarioPresenterAdmin;
 import presenter.strategy.admin.GerenciarUsuariosPresenterAdmin;
 import presenter.strategy.admin.IPresenterAdmin;
 import presenter.strategy.admin.PrincipalPresenterAdmin;
@@ -23,6 +24,10 @@ public class GerenciarUsuariosPresenterStateAdmin extends PresenterStateAdmin {
 
         principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
         presenter.getView().setVisible(true);
+    }
+    
+    public void exibirUsuario(){
+        principalPresenter.getInstance().setState(new ExibeUsuarioPresenterStateAdmin(new ExibeUsuarioPresenterAdmin()));
     }
     
     @Override

@@ -5,12 +5,8 @@
 package state.admin;
 
 import presenter.strategy.admin.GerenciarUsuariosPresenterAdmin;
-import state.user.*;
-import presenter.strategy.user.ExibeUsuarioPresenterUser;
 import presenter.strategy.admin.IPresenterAdmin;
-import presenter.strategy.user.IPresenterUser;
-import presenter.strategy.user.NotificacaoPresenterUser;
-import presenter.strategy.user.PrincipalPresenterUser;
+import presenter.strategy.admin.NotificacaoPresenterAdmin;
 
 /**
  *
@@ -27,7 +23,7 @@ public class InicialPresenterStateAdmin extends PresenterStateAdmin {
     }
     
     public void verNotificacoes(){
-       // presenter.setState(new NotificacaoPresenterStateAdmin(new NotificacaoPresenterAdmin()));
+        presenter.setState(new NotificacaoPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance()));
     }
     
     public void fechar(){

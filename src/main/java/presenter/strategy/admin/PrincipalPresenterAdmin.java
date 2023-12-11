@@ -64,6 +64,12 @@ public class PrincipalPresenterAdmin extends IPresenterAdmin {
                 state.manterUsuarios();
             }
         });
+        view.getBtnNotificacao().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.verNotificacoes();
+            }
+        });
         view.setVisible(true);
     }
     

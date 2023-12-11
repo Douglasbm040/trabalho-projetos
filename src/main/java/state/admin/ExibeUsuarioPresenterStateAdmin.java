@@ -4,26 +4,30 @@
  */
 package state.admin;
 
-import state.user.*;
-import presenter.strategy.user.ExibeUsuarioPresenterUser;
 import presenter.strategy.admin.IPresenterAdmin;
+import presenter.strategy.admin.NotificacaoPresenterAdmin;
 import presenter.strategy.admin.PrincipalPresenterAdmin;
+import state.user.*;
 import presenter.strategy.user.PrincipalPresenterUser;
 
 /**
  *
  * @author isaac
  */
-public class NotificacaoPresenterStateAdmin extends PresenterStateAdmin {
-    public NotificacaoPresenterStateAdmin (IPresenterAdmin presenter){
+
+public class ExibeUsuarioPresenterStateAdmin extends PresenterStateAdmin {
+
+    public ExibeUsuarioPresenterStateAdmin(IPresenterAdmin presenter) {
         super(presenter);
-        principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
+
+        principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView());
         presenter.getView().setVisible(true);
     }
     
     @Override
-    public void fechar(){
-        principalPresenter.getInstance().setState(new InicialPresenterStateAdmin(principalPresenter.getInstance()));
+    public void fechar() {
+        principalPresenter.getInstance().setState(new InicialPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance()));
         presenter.getView().dispose();
     }
+    
 }

@@ -22,7 +22,7 @@ public class ExibeNotificacaoPresenterStateUser extends PresenterStateUser {
     
     @Override
     public void fechar(){
-        presenter.setState(new NotificacaoPresenterStateUser(NotificacaoPresenterUser.getInstance()));
+        principalPresenter.getInstance().setState(new NotificacaoPresenterStateUser(NotificacaoPresenterUser.getInstance()));
         presenter.getView().dispose();
     }
 }
