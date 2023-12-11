@@ -6,13 +6,14 @@ package Service.observer;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.User;
 
 
 /**
  *
  * @author dougl
  */
-public abstract class Observable {
+public abstract class Observable<T> {
     private List<IObserver> observers = new ArrayList();
     
     public void addObserver(IObserver observer){
@@ -22,9 +23,9 @@ public abstract class Observable {
           observers.remove(observer);
     }
     
-    public void notifyObserver(){
+    public void notifyObserver(T observable){
         for (IObserver observer: observers ){
-            observer.upadate();   
+            observer.update(observable);
         }
     }
 }

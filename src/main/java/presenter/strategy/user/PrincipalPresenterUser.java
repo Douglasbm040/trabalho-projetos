@@ -4,9 +4,11 @@
  */
 package presenter.strategy.user;
 
+import Service.observer.IObserver;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.User;
 import presenter.LoginPresenter;
 import state.user.InicialPresenterStateUser;
 import state.user.PresenterStateUser;
@@ -17,12 +19,13 @@ import view.user.PrincipalViewUser;
  *
  * @author isaac
  */
-public class PrincipalPresenterUser extends IPresenterUser {
+public class PrincipalPresenterUser extends IPresenterUser implements IObserver<User> {
 
-     private static PrincipalPresenterUser instance;
+    private static PrincipalPresenterUser instance;
 
     private PrincipalViewUser view;
     private PresenterStateUser state;
+    private User userState;
 
     private PrincipalPresenterUser() {
         this.view = new PrincipalViewUser();
@@ -55,21 +58,33 @@ public class PrincipalPresenterUser extends IPresenterUser {
         view.getMenuUsuario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               state.manterUsuarios();  
+                state.manterUsuarios();
             }
+
         });
+        if (userState != null) {
+            view.getLblTipoUsuarioRodape().setText("Tipo: User");
+            view.getLblUsuarioRodape().setText("Usuário :"+ userState.getName());
+        }
         view.setVisible(true);
     }
 
-    
+    public User getUserState() {
+        return userState;
+    }
+
+    public void setUserState(User userState) {
+        this.userState = userState;
+    }
+
     public PrincipalViewUser getViewPrin() {
         return view;
     }
 
-    
+    @Override
+    public void update(User obsersable) {
+        setUserState(obsersable);
+        configuraTela();
+    }
 
-   
-    
-    
-    
 }

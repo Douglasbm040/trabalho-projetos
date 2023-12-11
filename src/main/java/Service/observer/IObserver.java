@@ -8,6 +8,7 @@ package Service.observer;
  *
  * @author dougl
  */
-public interface IObserver {
-    void upadate();
+public interface IObserver<T> {
+    void update(T obsersable);
 }
+

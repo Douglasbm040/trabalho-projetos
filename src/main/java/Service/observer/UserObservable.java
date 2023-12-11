@@ -4,10 +4,21 @@
  */
 package Service.observer;
 
+import model.User;
+import presenter.strategy.user.PrincipalPresenterUser;
+
 /**
  *
  * @author dougl
  */
-public class UserObservable {
+public class UserObservable extends Observable<User> {
+
+    public UserObservable() {
+    super();
+    super.addObserver( PrincipalPresenterUser.getInstance());
+    }
+    
+    
+    
     
 }

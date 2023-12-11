@@ -4,6 +4,8 @@
  */
 package presenter;
 
+import Service.observer.Observable;
+import Service.observer.UserObservable;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,6 +57,8 @@ public class LoginPresenter {
                         }
                     }
                     if (userCadastro != null) {
+                        Observable observer = new UserObservable();
+                        observer.notifyObserver(userCadastro);
                         switch (userCadastro.getTagAccess()) {
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
