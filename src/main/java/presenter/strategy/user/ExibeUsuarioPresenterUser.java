@@ -5,6 +5,8 @@
 package presenter.strategy.user;
 
 import Service.observer.IObserver;
+import Service.observer.Observable;
+import Service.observer.UserObservable;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -29,9 +31,6 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser implements IObserv
     public ExibeUsuarioPresenterUser() {
         this.view = new ExibeUsuarioViewUser();
         this.state = new ExibeUsuarioPresenterStateUser(this);
-
-        configuraTela();
-
         view.setVisible(true);
     }
 
@@ -46,6 +45,8 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser implements IObserv
                 new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Observable observable = new UserObservable();
+                observable.notifyObserver(userState); 
                 state.fechar();
             }
 

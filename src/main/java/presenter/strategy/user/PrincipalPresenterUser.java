@@ -31,8 +31,7 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
 
     private PrincipalPresenterUser() {
         this.view = new PrincipalViewUser();
-        this.state = new InicialPresenterStateUser(this);
-        configuraTela();
+        this.state = new InicialPresenterStateUser(this); 
     }
 
     public static PrincipalPresenterUser getInstance() {
@@ -60,9 +59,9 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
         view.getMenuUsuario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                state.manterUsuarios();
                 Observable observable = new UserObservable();
-                observable.notifyObserver(userState);  
+                observable.notifyObserver(userState); 
+                  state.manterUsuarios();
             }
 
         });

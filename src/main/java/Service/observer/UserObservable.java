@@ -13,14 +13,9 @@ import presenter.strategy.user.PrincipalPresenterUser;
  * @author dougl
  */
 public class UserObservable extends Observable<User> {
-
     public UserObservable() {
-    super();
-    super.addObserver( PrincipalPresenterUser.getInstance());
-    super.addObserver( new ExibeUsuarioPresenterUser());
-    }
-    
-    
-    
-    
+        super();
+        super.addObserver(PrincipalPresenterUser.getInstance());
+        super.addObserver(new ExibeUsuarioPresenterUser());
+    }   
 }
