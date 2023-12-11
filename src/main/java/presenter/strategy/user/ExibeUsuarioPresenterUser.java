@@ -4,10 +4,12 @@
  */
 package presenter.strategy.user;
 
+import Service.observer.IObserver;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.User;
 import presenter.LoginPresenter;
 import state.user.ExibeUsuarioPresenterStateUser;
 import state.user.PresenterStateUser;
@@ -17,9 +19,12 @@ import view.user.ExibeUsuarioViewUser;
  *
  * @author isaac
  */
-public class ExibeUsuarioPresenterUser extends IPresenterUser {
+public class ExibeUsuarioPresenterUser extends IPresenterUser implements IObserver<User> {
+
     private ExibeUsuarioViewUser view;
     private PresenterStateUser state;
+
+    private User userState;
 
     public ExibeUsuarioPresenterUser() {
         this.view = new ExibeUsuarioViewUser();
@@ -38,25 +43,39 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser {
     @Override
     public void configuraTela() {
         view.getBtnFechar().addActionListener(
-        new ActionListener() {
+                new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               state.fechar();
+                state.fechar();
             }
-            
-        } );
-      view.getTxtNome().setText("isaack");
+
+        });
+        if(getUserState() != null){
+            view.getTxtUsuario().setText(getUserState().getTokenAccess()); //verifica se ta invertido usurio e senha no front
+            view.getTxtSenha().setText(getUserState().getName()); 
+        }
+        view.getTxtNome().setText("tem que tirar isso");
     }
 
-   
-
-    
     @Override
     public javax.swing.JInternalFrame getView() {
         return view;
     }
 
+    public User getUserState() {
+        return userState;
+    }
 
-    
-    
+    public void setUserState(User userState) {
+        this.userState = userState;
+    }
+
+    @Override
+    public void update(User obsersable) {
+        System.out.println(obsersable.getName());
+        System.out.println(obsersable.getTokenAccess());
+        setUserState(obsersable);
+        configuraTela();
+    }
+
 }

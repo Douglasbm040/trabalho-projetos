@@ -5,6 +5,7 @@
 package Service.observer;
 
 import model.User;
+import presenter.strategy.user.ExibeUsuarioPresenterUser;
 import presenter.strategy.user.PrincipalPresenterUser;
 
 /**
@@ -16,6 +17,7 @@ public class UserObservable extends Observable<User> {
     public UserObservable() {
     super();
     super.addObserver( PrincipalPresenterUser.getInstance());
+    super.addObserver( new ExibeUsuarioPresenterUser());
     }
     
     

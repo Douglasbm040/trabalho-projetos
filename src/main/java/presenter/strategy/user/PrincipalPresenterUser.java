@@ -5,6 +5,8 @@
 package presenter.strategy.user;
 
 import Service.observer.IObserver;
+import Service.observer.Observable;
+import Service.observer.UserObservable;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,6 +61,8 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
             @Override
             public void actionPerformed(ActionEvent e) {
                 state.manterUsuarios();
+                Observable observable = new UserObservable();
+                observable.notifyObserver(userState);  
             }
 
         });
