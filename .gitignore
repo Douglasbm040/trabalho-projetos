@@ -38,3 +38,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+src/main/java/repository/BANCO.db
