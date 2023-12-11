@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.User;
-import presenter.strategy.user.PrincipalPresenterUser;
 import repository.Datasource.DAO.UserDAO.UserDAOSQLite;
 import view.CadastroView;
 
@@ -57,7 +56,7 @@ public class CadastroPresenter {
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
                 if (retornoValidador.isEmpty()) {
                     if (listUser.isEmpty()) {
-                        UserDAO.insertUser(new User(view.getTxtNome().getText(), view.getTxtSenha().getText(), 1));
+                        UserDAO.insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 1));
                         JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                         view.dispose();
                         return;

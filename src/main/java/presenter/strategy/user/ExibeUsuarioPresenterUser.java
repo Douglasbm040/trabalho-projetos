@@ -54,7 +54,6 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser implements IObserv
             view.getTxtUsuario().setText(getUserState().getTokenAccess()); //verifica se ta invertido usurio e senha no front
             view.getTxtSenha().setText(getUserState().getName()); 
         }
-        view.getTxtNome().setText("tem que tirar isso");
     }
 
     @Override
