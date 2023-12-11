@@ -15,7 +15,7 @@ import presenter.strategy.user.PrincipalPresenterUser;
  * @author isaac
  */
 public class NotificacaoPresenterStateAdmin extends PresenterStateAdmin {
-    public NotificacaoPresenterStateAdmin (IPresenterAdmin<ExibeUsuarioPresenterUser> presenter){
+    public NotificacaoPresenterStateAdmin (IPresenterAdmin presenter){
         super(presenter);
         
     }

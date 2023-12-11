@@ -24,7 +24,7 @@ public class InicialPresenterStateUser extends PresenterStateUser {
     }
     
     public void verNotificacoes(){
-        presenter.setState(new NotificacaoPresenterStateUser(new NotificacaoPresenterUser()));
+        presenter.setState(new NotificacaoPresenterStateUser(NotificacaoPresenterUser.getInstance()));
     }
     
     public void fechar(){

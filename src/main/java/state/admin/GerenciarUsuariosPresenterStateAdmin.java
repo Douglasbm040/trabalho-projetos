@@ -18,16 +18,17 @@ import presenter.strategy.user.PrincipalPresenterUser;
  */
 public class GerenciarUsuariosPresenterStateAdmin extends PresenterStateAdmin {
 
-    public GerenciarUsuariosPresenterStateAdmin(IPresenterAdmin<GerenciarUsuariosPresenterAdmin> presenter) {
+    public GerenciarUsuariosPresenterStateAdmin(IPresenterAdmin presenter) {
         super(presenter);
 
-        principalPresenter.getInstance().getView().getDkstpPrincipal().add(presenter.getPresenter().getView());
-        presenter.getPresenter().getView().setVisible(true);
+        principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
+        presenter.getView().setVisible(true);
     }
     
     @Override
     public void fechar() {
-        presenter.setState(new InicialPresenterStateAdmin(PrincipalPresenterAdmin.getInstance()));
+        principalPresenter.getInstance().setState(new InicialPresenterStateAdmin(principalPresenter.getInstance()));
+        presenter.getView().dispose();
     }
     
 }

@@ -22,7 +22,7 @@ import view.user.PrincipalViewUser;
  *
  * @author isaac
  */
-public class PrincipalPresenterAdmin implements IPresenterAdmin {
+public class PrincipalPresenterAdmin extends IPresenterAdmin {
 
     private static PrincipalPresenterAdmin instance;
 
@@ -66,14 +66,10 @@ public class PrincipalPresenterAdmin implements IPresenterAdmin {
         });
         view.setVisible(true);
     }
-
-    public PrincipalViewAdmin getView() {
+    
+    
+    public PrincipalViewAdmin getViewPrin() {
         return view;
-    }
-
-    @Override
-    public PrincipalPresenterAdmin getPresenter() {
-        return getInstance();
     }
 
 }

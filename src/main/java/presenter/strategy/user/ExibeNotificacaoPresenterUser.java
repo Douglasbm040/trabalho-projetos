@@ -2,32 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package presenter.strategy.admin;
+package presenter.strategy.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JInternalFrame;
-import state.admin.GerenciarUsuariosPresenterStateAdmin;
-import state.admin.PresenterStateAdmin;
-import view.admin.GerenciarUsuariosViewAdmin;
+import state.user.ExibeNotificacaoPresenterStateUser;
+import state.user.PresenterStateUser;
+import view.user.DetalhesNotificacaoViewUser;
 
 /**
  *
  * @author isaac
  */
-public class GerenciarUsuariosPresenterAdmin extends IPresenterAdmin {
-    private GerenciarUsuariosViewAdmin view;
-    private PresenterStateAdmin state;
+public class ExibeNotificacaoPresenterUser extends IPresenterUser {
+
+    private DetalhesNotificacaoViewUser view;
+    private PresenterStateUser state;
     
-    public GerenciarUsuariosPresenterAdmin (){
-        this.view = new GerenciarUsuariosViewAdmin();
-        this.state = new GerenciarUsuariosPresenterStateAdmin(this);
-        
+    public ExibeNotificacaoPresenterUser() {
+        view = new DetalhesNotificacaoViewUser();
+        state = new ExibeNotificacaoPresenterStateUser(this);
+
         configuraTela();
+
+        view.setVisible(true);
     }
-    
+   
     @Override
-    public void setState(PresenterStateAdmin state) {
+    public void setState(PresenterStateUser state) {
         this.state = state;
     }
 
@@ -40,10 +42,10 @@ public class GerenciarUsuariosPresenterAdmin extends IPresenterAdmin {
             }
         });
     }
-    
+
     @Override
-    public JInternalFrame getView() {
+    public javax.swing.JInternalFrame getView() {
         return view;
     }
- 
 }
+

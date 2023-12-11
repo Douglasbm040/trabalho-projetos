@@ -10,8 +10,10 @@ import state.admin.PresenterStateAdmin;
  *
  * @author isaac
  */
-public interface IPresenterAdmin<T> {
-    void setState(PresenterStateAdmin state);
-    void configuraTela();
-    T getPresenter();
+public abstract class IPresenterAdmin {
+    public abstract void setState(PresenterStateAdmin state);
+    public abstract void configuraTela();
+    public javax.swing.JInternalFrame getView(){
+          throw new RuntimeException("deve possuir JInternalFrame");
+    }
 }

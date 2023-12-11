@@ -20,7 +20,8 @@ public class ExibeUsuarioPresenterStateUser extends PresenterStateUser {
         presenter.getView().setVisible(true);
    
     }
-
+    
+    @Override
     public void fechar() { 
         principalPresenter.getInstance().setState(new InicialPresenterStateUser(principalPresenter.getInstance()));
         presenter.getView().dispose();

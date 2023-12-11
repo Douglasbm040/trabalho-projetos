@@ -23,7 +23,7 @@ public class InicialPresenterStateAdmin extends PresenterStateAdmin {
     }
     
     public void manterUsuarios(){
-        presenter.setState(new GerenciarUsuariosPresenterStateAdmin(GerenciarUsuariosPresenterAdmin.getInstance()));
+        presenter.setState(new GerenciarUsuariosPresenterStateAdmin(new GerenciarUsuariosPresenterAdmin()));
     }
     
     public void verNotificacoes(){

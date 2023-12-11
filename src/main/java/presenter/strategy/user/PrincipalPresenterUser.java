@@ -66,6 +66,12 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
             }
 
         });
+        view.getBtnNotificacao().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.verNotificacoes();
+            }
+        });
         if (userState != null) {
             view.getLblTipoUsuarioRodape().setText("Tipo: User");
             view.getLblUsuarioRodape().setText("Usuário :"+ userState.getName());
