@@ -48,29 +48,34 @@ public class LoginPresenter {
                     return;
                 }
                 if (retornoValidador.isEmpty()) {
+                    User userCadastro = null;
                     for (User usuario : listUser) {
                         if (view.getTxtUsuario().getText().equals(usuario.getName()) && view.getTxtSenha().getText().equals(usuario.getTokenAccess())) {
-                            switch (usuario.getTagAccess()) {
-                                case 0:
-                                    JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
-                                    break;
-                                case 1:
-                                    PrincipalPresenterAdmin.getInstance();
-                                    view.dispose();
-                                    break;
-                                case 2:
-                                    PrincipalPresenterUser.getInstance();
-                                    view.dispose();
-                                    break;
-                                default:
-                                    JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Usuário não cadastrado !");
+                            userCadastro = usuario;
                         }
                     }
+                    if (userCadastro != null) {
+                        switch (userCadastro.getTagAccess()) {
+                            case 0:
+                                JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
+                                break;
+                            case 1:
+                                PrincipalPresenterAdmin.getInstance();
+                                view.dispose();
+                                break;
+                            case 2:
+                                PrincipalPresenterUser.getInstance();
+                                view.dispose();
+                                break;
+                            default:
+                                JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
+                        }
 
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Usuário não cadastrado !");
+
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, retornoValidador.get(0));
                 }

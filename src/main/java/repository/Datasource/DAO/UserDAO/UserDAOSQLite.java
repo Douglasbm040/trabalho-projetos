@@ -56,7 +56,7 @@ public class UserDAOSQLite implements IUserDAO {
                 if (resultSet.next()) {
                     String name = resultSet.getString("NAME");
                     String token = resultSet.getString("TOKEN_ACCESS");
-                    int tagAcess = resultSet.getInt("TAG_ACESS");
+                    int tagAcess = resultSet.getInt("TAG_ACCESS");
 
                     user = new User(name, token, tagAcess);
                 }
@@ -82,7 +82,7 @@ public class UserDAOSQLite implements IUserDAO {
 
             // Processar os resultados
             while (resultSet.next()) {
-                users.add(new User(resultSet.getString("NAME"),resultSet.getString("TOKEN_ACCESS"),resultSet.getInt("ID_USER")));
+                users.add(new User(resultSet.getString("NAME"),resultSet.getString("TOKEN_ACCESS"),resultSet.getInt("TAG_ACCESS")));
             }
             System.out.println("User ID:  Token: " + resultSet.next());
 
