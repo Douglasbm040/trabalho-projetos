@@ -22,6 +22,8 @@ import view.admin.NotificacoesViewAdmin;
  * @author isaac
  */
 public class NotificacaoPresenterAdmin extends IPresenterAdmin {
+
+   
     private NotificacoesViewAdmin view;
     private PresenterStateAdmin state;
     private static NotificacaoPresenterAdmin instance;
@@ -56,6 +58,7 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
         view.getBtnFechar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                instance = null;
                 state.fechar();
             }
         });
@@ -64,6 +67,7 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
             public void actionPerformed(ActionEvent e) {
                 int row = view.getTblNotificacoes().getSelectedRow();
                 if(row >= 0){
+                    instance = null;
                    state.verDetalhesNotificacao(listNotificationAdmin.get(row));
                 }
                 notificationFactory.Create().updateToRead(listNotificationAdmin.get(row));
@@ -78,7 +82,8 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
         DefaultTableModel modelo = (DefaultTableModel) view.getTblNotificacoes().getModel();
 
 
-        for (Notification notificationAdmin : listNotificationAdmin) {
+        
+            for (Notification notificationAdmin : listNotificationAdmin) {
             String isRead  = notificationAdmin.getIsRead() == 0 ? "não lida" : "lida" ;
             String conteudo = notificationAdmin.getContent();
             Object[] dadosLinha = {notificationAdmin.getContent(),userFactory.create().selectById(notificationAdmin.getIdSender()).getName(),notificationAdmin.getDataEnvio(), isRead};  // Criar um array com o conteúdo
@@ -90,4 +95,7 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
     public JInternalFrame getView(){
         return view;
     }
+
+ 
+   
 }

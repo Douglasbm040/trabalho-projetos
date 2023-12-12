@@ -21,6 +21,7 @@ public class ExibeNotificacaoPresenterStateAdmin extends PresenterStateAdmin {
     
     @Override
     public void fechar(){
+        
         principalPresenter.getInstance(user).setState(new NotificacaoPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance(user), user));
         presenter.getView().dispose();
     }

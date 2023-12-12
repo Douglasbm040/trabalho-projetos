@@ -65,6 +65,7 @@ public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
                 JOptionPane.showMessageDialog(null, "Usuário rejeitado no sistema!");
                 notificaDAO.Create().deleteNotification(notification.getIdNotification());
                 user.create().deleteUser(notification.getIdSender());
+                
                 state.fechar();          
             }
         });
@@ -73,6 +74,8 @@ public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
             view.getTxtAreaMensagem().setText(notification.getContent());
             view.getTxtData().setText(notification.getDataEnvio());
         }
+          
+
     }
     
     @Override
