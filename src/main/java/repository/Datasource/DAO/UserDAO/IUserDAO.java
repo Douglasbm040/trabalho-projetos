@@ -13,13 +13,13 @@ import model.User;
  */
 public interface IUserDAO {
 
-    public void insertUser(User user);
+    public int insertUser(User user);
     
     public User selectById(int userId);
     
     public List<User> selectUserAll();
 
-    public void updateUser(User user, int userId);
+    public void updateUserTagAccess(User user, int userId);
 
     public void deleteUser(int userId);
     

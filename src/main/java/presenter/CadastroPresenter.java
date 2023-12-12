@@ -7,10 +7,15 @@ package presenter;
 import Service.validation.Adapter.FactoryValidationMethodExtern;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.Notification;
 import model.User;
 import repository.Datasource.DAO.UserDAO.UserDAOSQLite;
+import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
+import repository.Datasource.Factories.UserFactory.UserDAOSQLiteFactory;
 import view.CadastroView;
 
 /**
@@ -36,14 +41,15 @@ public class CadastroPresenter {
                 view.dispose();
             }
         });
-        UserDAOSQLite UserDAO = new UserDAOSQLite();
-        List<User> listUser = UserDAO.selectUserAll();
+        UserDAOSQLiteFactory UserDAO = new UserDAOSQLiteFactory();
+        NotificationDAOSQLiteFactory notificationDAO = new NotificationDAOSQLiteFactory();
+        List<User> listUser = UserDAO.create().selectUserAll();
         view.getBtnCriarConta().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(view.getTxtUsuario().getText().isBlank()){
-                   JOptionPane.showMessageDialog(null, "Campo usuarios está vazio !");
-                    return; 
+                if (view.getTxtUsuario().getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Campo usuarios está vazio !");
+                    return;
                 }
                 for (User usuario : listUser) {
                     System.out.println(usuario.getName());
@@ -56,15 +62,22 @@ public class CadastroPresenter {
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
                 if (retornoValidador.isEmpty()) {
                     if (listUser.isEmpty()) {
-                        UserDAO.insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 1));
+                        int row = UserDAO.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 0));
+                        if (row > 0) {
+                            LocalDateTime dataAtual = LocalDateTime.now();
+                            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                            String dataAtualFormatada = dataAtual.format(formato);
+                            notificationDAO.Create().insertNotification(new Notification("O usuário solicio de acesso ", dataAtualFormatada, row));
+                        }
                         JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                         view.dispose();
                         return;
                     }
-                    UserDAO.insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 2));
-                        JOptionPane.showMessageDialog(null, "Cadastro concluido !");
-                        view.dispose();
-                        return;
+                    
+                    UserDAO.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 2));
+                    JOptionPane.showMessageDialog(null, "Cadastro concluido !");
+                    view.dispose();
+                    return;
                 } else {
                     JOptionPane.showMessageDialog(null, retornoValidador.get(0));
                 }

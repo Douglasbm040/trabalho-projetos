@@ -22,7 +22,8 @@ public class UserDAOSQLite implements IUserDAO {
     }
     
     @Override
-    public void insertUser(User user) {
+    public int insertUser(User user) {
+        int rowsAffected = 0 ;
         String sql = "INSERT INTO USER (NAME, TOKEN_ACCESS, TAG_ACCESS) VALUES (?, ?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -30,16 +31,18 @@ public class UserDAOSQLite implements IUserDAO {
             preparedStatement.setString(2, user.getTokenAccess());
             preparedStatement.setInt(3, user.getTagAccess());
 
-            int rowsAffected = preparedStatement.executeUpdate();
+            rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
                 System.out.println("Inserção bem-sucedida!");
             } else {
                 System.out.println("Falha na inserção.");
             }
+            return rowsAffected;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+         return rowsAffected;
     }
     
     @Override
@@ -95,13 +98,12 @@ public class UserDAOSQLite implements IUserDAO {
     }
     
     @Override
-    public void updateUser(User user, int userId) {
-        String sql = "UPDATE USER SET NAME = ?, TOKEN_ACCESS = ? WHERE ID_USER = ?";
+    public void updateUserTagAccess(String tagAccess, int userId) {
+        String sql = "UPDATE USER SET NAME = ?, TAG_ACCESS = ? WHERE ID_USER = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getTokenAccess());
-            preparedStatement.setInt(3, userId);
+            preparedStatement.setString(1, tagAccess);
+            preparedStatement.setInt(2, userId);
 
             int rowsAffected = preparedStatement.executeUpdate();
 

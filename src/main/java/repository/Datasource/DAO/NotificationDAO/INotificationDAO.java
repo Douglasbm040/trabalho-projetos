@@ -4,6 +4,7 @@
  */
 package repository.Datasource.DAO.NotificationDAO;
 
+import java.util.List;
 import model.Notification;
 
 /**
@@ -12,7 +13,7 @@ import model.Notification;
  */
 public interface INotificationDAO {
      public void insertNotification(Notification notification);
-     public void SelectNotificationALL();
+     public List<Notification> SelectNotificationALL();
      public void updateNotification(Notification notification);
      public void deleteNotification(Notification notification);  
 }

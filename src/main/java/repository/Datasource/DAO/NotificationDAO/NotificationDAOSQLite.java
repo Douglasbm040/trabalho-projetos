@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Notification;
 import repository.Datasource.DatabaseSQLiteConnection;
 
@@ -29,7 +31,7 @@ public class NotificationDAOSQLite implements INotificationDAO{
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, notification.getContent());
-            //preparedStatement.setDate(2, notification.getDataEnvio());
+            preparedStatement.setString(2, notification.getDataEnvio());
             preparedStatement.setInt(3, notification.getIdReceptor());
 
             int rowsAffected = preparedStatement.executeUpdate();
@@ -44,33 +46,29 @@ public class NotificationDAOSQLite implements INotificationDAO{
         }
     }
         @Override
-      public void SelectNotificationALL(){
-         
+      public List<Notification> SelectNotificationALL(){
+          List<Notification> listaNotification = new ArrayList<>();
             String sql = "SELECT * FROM NOTIFICATION";
-
             // Preparar a instrução SQL
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                  System.out.println("User ID: ");
                 // Executar a consulta
                 ResultSet resultSet = preparedStatement.executeQuery();
-
                 // Processar os resultados
                 while (resultSet.next()) {
                     String content = resultSet.getString("CONTENT");
                     String dataEnvio = resultSet.getString("DATE_ENVIO");
-                    String idReceptor = resultSet.getString("ID_USER");
+                    int idReceptor = resultSet.getInt("ID_USER");
 
-                    // Exibir os resultados (você pode fazer o que quiser com esses dados)
-                    System.out.println("content: " + content + ", dataEnvio: " + dataEnvio + ", idReceptor: " + idReceptor);
+                   
+           listaNotification.add(new Notification(content, dataEnvio, idReceptor));
                 }
                   System.out.println("User ID:  Token: "+ resultSet.next());
             
         } catch (SQLException e) {
-              System.out.println("asdasd");
+            
             e.printStackTrace();
-           
-      
         }
+        return listaNotification;
     } 
       @Override
    public void updateNotification(Notification notification) {

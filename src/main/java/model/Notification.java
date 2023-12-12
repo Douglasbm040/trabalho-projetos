@@ -10,23 +10,23 @@ package model;
  */
 public class Notification {
     private String content;
-    private String dataEnvio;
+    private String dataNotification;
     private int idReceptor;
 
     public Notification(String content, String dataEnvio, int idReceptor) {
         this.content = content;
-        this.dataEnvio = dataEnvio;
+        this.dataNotification = dataEnvio;
         this.idReceptor = idReceptor;
     }
     
     
 
     public String getDataEnvio() {
-        return dataEnvio;
+        return dataNotification;
     }
 
     public void setDataEnvio(String dataEnvio) {
-        this.dataEnvio = dataEnvio;
+        this.dataNotification = dataEnvio;
     }
 
     public int getIdReceptor() {
