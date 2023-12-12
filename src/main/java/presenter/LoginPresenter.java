@@ -61,8 +61,7 @@ public class LoginPresenter {
                         List<Notification> listNotificationAdmin = notificationFactory.Create().SelectNotificationALLAdmin();
                         List<Notification> listNotificationUser = notificationFactory.Create().SelectNotificationALLUser(userCadastro.getId());
                         switch (userCadastro.getTagAccess()) {
-                            case -1:
-                                System.out.println("testando banco");
+                            case 0:
                                 System.out.println(userCadastro.getId());
                                 for (Notification n : listNotificationAdmin) {
                                     System.out.println(n.getContent() + n.getDataEnvio() + n.getIdReceptor());
@@ -78,7 +77,7 @@ public class LoginPresenter {
                                 PrincipalPresenterAdmin.getInstance(userCadastro);
                                 view.dispose();
                                 break;
-                            case 0:
+                            case 2:
 
                                 PrincipalPresenterUser.getInstance(userCadastro);
                                 view.dispose();

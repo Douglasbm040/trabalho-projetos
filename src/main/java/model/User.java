@@ -13,17 +13,21 @@ public class User {
     private String tokenAccess;
     private int tagAccess;
     private int id;
-    public User(String name, String tokenAccess, int tagAccess,int id) {
+    private String registerDate;
+    
+    public User(String name, String tokenAccess, int tagAccess,int id, String registerDate) {
         this.name = name;
         this.tokenAccess = tokenAccess;
         this.tagAccess = tagAccess;
         this.id = id;
+        this.registerDate = registerDate;
     }
 
-    public User(String name, String tokenAccess, int tagAccess) {
+    public User(String name, String tokenAccess, int tagAccess, String registerDate) {
         this.name = name;
         this.tokenAccess = tokenAccess;
         this.tagAccess = tagAccess;
+        this.registerDate = registerDate;
     }
 
     public String getName() {
@@ -56,6 +60,10 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getRegisterDate() {
+        return registerDate;
     }
 
     

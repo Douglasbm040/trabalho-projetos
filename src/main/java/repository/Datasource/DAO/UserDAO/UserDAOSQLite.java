@@ -21,64 +21,61 @@ public class UserDAOSQLite implements IUserDAO {
     public UserDAOSQLite() {
         this.connection = DatabaseSQLiteConnection.getConnection();
     }
-    
+
     @Override
-public int insertUser(User user) {
-    int generatedId = 0;
-    String sql = "INSERT INTO USER (NAME, TOKEN_ACCESS, TAG_ACCESS) VALUES (?, ?, ?)";
+    public int insertUser(User user) {
+        int generatedId = 0;
+        String sql = "INSERT INTO USER (NAME, TOKEN_ACCESS, TAG_ACCESS, REGISTER_DATE) VALUES (?, ?, ?, ?)";
 
-    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-        preparedStatement.setString(1, user.getName());
-        preparedStatement.setString(2, user.getTokenAccess());
-        preparedStatement.setInt(3, user.getTagAccess());
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getTokenAccess());
+            preparedStatement.setInt(3, user.getTagAccess());
+            preparedStatement.setString(4, user.getRegisterDate());
+            
+            int rowsAffected = preparedStatement.executeUpdate();
 
-        int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Inserção bem-sucedida!");
 
-        if (rowsAffected > 0) {
-            System.out.println("Inserção bem-sucedida!");
-
-            // Consulta para obter o último ID inserido
-            String query = "SELECT last_insert_rowid() as id";
-            try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(query)) {
-                if (resultSet.next()) {
-                    generatedId = resultSet.getInt("id");
-                    System.out.println("ID gerado: " + generatedId);
-                } else {
-                    System.out.println("Falha ao obter o ID gerado.");
+                // Consulta para obter o último ID inserido
+                String query = "SELECT last_insert_rowid() as id";
+                try (Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                    if (resultSet.next()) {
+                        generatedId = resultSet.getInt("id");
+                        System.out.println("ID gerado: " + generatedId);
+                    } else {
+                        System.out.println("Falha ao obter o ID gerado.");
+                    }
                 }
+            } else {
+                System.out.println("Falha na inserção.");
             }
-        } else {
-            System.out.println("Falha na inserção.");
+
+            return generatedId;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return generatedId;
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
 
-    return generatedId;
-}
-
-
-    
     @Override
     public User selectById(int userId) {
         String sql = "SELECT * FROM USER WHERE ID_USER = ?";
         User user = null;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, userId); // Definir o valor do parâmetro
+            preparedStatement.setInt(1, userId);
 
-            // Executar a consulta
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                // Processar os resultados
                 if (resultSet.next()) {
                     String name = resultSet.getString("NAME");
                     String token = resultSet.getString("TOKEN_ACCESS");
-                    int tagAcess = resultSet.getInt("TAG_ACCESS");
+                    int tagAccess = resultSet.getInt("TAG_ACCESS");
+                    String registerDate = resultSet.getString("REGISTER_DATE");
 
-                    user = new User(name, token, tagAcess);
+                    user = new User(name, token, tagAccess, registerDate);
                 }
             }
         } catch (SQLException e) {
@@ -87,40 +84,80 @@ public int insertUser(User user) {
 
         return user;
     }
-    
+
     @Override
     public List<User> selectUserAll() {
         List<User> users = new ArrayList<>();
 
         String sql = "SELECT * FROM USER";
 
-        // Preparar a instrução SQL
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            System.out.println("User ID: ");
-            // Executar a consulta
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            // Processar os resultados
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql); ResultSet resultSet = preparedStatement.executeQuery()) {
             while (resultSet.next()) {
-                users.add(new User(resultSet.getString("NAME"),resultSet.getString("TOKEN_ACCESS"),resultSet.getInt("TAG_ACCESS"),resultSet.getInt("ID_USER")));
+                users.add(new User(
+                        resultSet.getString("NAME"),
+                        resultSet.getString("TOKEN_ACCESS"),
+                        resultSet.getInt("TAG_ACCESS"),
+                        resultSet.getInt("ID_USER"),
+                        resultSet.getString("REGISTER_DATE")
+                ));
             }
-            System.out.println("User ID:  Token: " + resultSet.next());
-
         } catch (SQLException e) {
-            System.out.println("asdasd");
             e.printStackTrace();
-
         }
+
         return users;
     }
-    
+
+    @Override
+    public User selectAdmin() {
+        String sql = "SELECT * FROM USER WHERE TAG_ACCESS = 1";
+        User userAdmin = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql); ResultSet resultSet = preparedStatement.executeQuery()) {
+            userAdmin = new User(
+                    resultSet.getString("NAME"),
+                    resultSet.getString("TOKEN_ACCESS"),
+                    resultSet.getInt("TAG_ACCESS"),
+                    resultSet.getInt("ID_USER"),
+                    resultSet.getString("REGISTER_DATE")
+            );
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userAdmin;
+    }
+
+    @Override
+    public List<User> selectUserAllTypeUser() {
+        List<User> users = new ArrayList<>();
+
+        String sql = "SELECT * FROM USER WHERE TAG_ACCESS = 2";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql); ResultSet resultSet = preparedStatement.executeQuery()) {
+            while (resultSet.next()) {
+                users.add(new User(
+                        resultSet.getString("NAME"),
+                        resultSet.getString("TOKEN_ACCESS"),
+                        resultSet.getInt("TAG_ACCESS"),
+                        resultSet.getInt("ID_USER"),
+                        resultSet.getString("REGISTER_DATE")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
+
     @Override
     public void updateUserTagAccess(String tagAccess, int userId) {
-        String sql = "UPDATE USER SET NAME = ?, TAG_ACCESS = ? WHERE ID_USER = ?";
+        String sql = "UPDATE USER SET TAG_ACCESS = ? WHERE ID_USER = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, tagAccess);
-            preparedStatement.setInt(2, userId);
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, tagAccess);
 
             int rowsAffected = preparedStatement.executeUpdate();
 
@@ -133,13 +170,12 @@ public int insertUser(User user) {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void deleteUserAll() {
         String sql = "DELETE FROM USER";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
@@ -151,7 +187,7 @@ public int insertUser(User user) {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public void deleteUser(int userId) {
         String sql = "DELETE FROM USER WHERE ID_USER = ?";

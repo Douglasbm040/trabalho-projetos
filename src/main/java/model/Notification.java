@@ -11,12 +11,16 @@ package model;
 public class Notification {
     private String content;
     private String dataNotification;
+    private int idSender;
     private int idReceptor;
+    private int isRead;
 
-    public Notification(String content, String dataEnvio, int idReceptor) {
+    public Notification(String content, String dataEnvio, int idSender, int idReceptor, int isRead) {
         this.content = content;
         this.dataNotification = dataEnvio;
+        this.idSender = idSender;
         this.idReceptor = idReceptor;
+        this.isRead = isRead;
     }
     
     
@@ -35,6 +39,18 @@ public class Notification {
 
     public void setIdReceptor(int idReceptor) {
         this.idReceptor = idReceptor;
+    }
+
+    public String getDataNotification() {
+        return dataNotification;
+    }
+
+    public int getIdSender() {
+        return idSender;
+    }
+
+    public int getIsRead() {
+        return isRead;
     }
 
 

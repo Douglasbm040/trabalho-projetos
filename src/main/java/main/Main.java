@@ -20,7 +20,7 @@ public class Main {
         
     public static void main(String[] args) {
         //User n = new User("Radyja ","asfAGSJDFGJAGS",2);
-        Notification n3 = new Notification("ola mundo", "asd", 1);
+        //Notification n3 = new Notification("ola mundo", "asd", 1);
         INotificationDAO notificationSQLite = new NotificationDAOSQLiteFactory().Create() ;
         //n2.deleteNotificationALL();
         //n2.insertNotification(n1);

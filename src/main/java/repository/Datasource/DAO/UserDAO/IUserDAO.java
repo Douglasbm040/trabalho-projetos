@@ -18,7 +18,11 @@ public interface IUserDAO {
     public User selectById(int userId);
     
     public List<User> selectUserAll();
-
+    
+    public List<User> selectUserAllTypeUser();
+    
+    public User selectAdmin();
+    
     public void  updateUserTagAccess(String tagAccess, int userId);
 
     public void deleteUser(int userId);
