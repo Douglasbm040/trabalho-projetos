@@ -4,6 +4,8 @@
  */
 package repository.Datasource.Factories.ReportFactory;
 
+import java.util.List;
+import model.RelatorioUsuario;
 import repository.Datasource.ReportDAO.IReportDAO;
 
 /**

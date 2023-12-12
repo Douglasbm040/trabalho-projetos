@@ -4,10 +4,14 @@
  */
 package repository.Datasource.ReportDAO;
 
+import java.util.List;
+import model.RelatorioUsuario;
+import model.User;
+
 /**
  *
  * @author dougl
  */
 public interface IReportDAO {
-    
+    public List<RelatorioUsuario> selectQtdNotificationSended(User userAdmin);
 }

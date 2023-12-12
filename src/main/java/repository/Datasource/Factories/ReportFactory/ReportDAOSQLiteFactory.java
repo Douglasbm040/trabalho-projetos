@@ -4,6 +4,8 @@
  */
 package repository.Datasource.Factories.ReportFactory;
 
+import java.util.List;
+import model.RelatorioUsuario;
 import repository.Datasource.ReportDAO.IReportDAO;
 import repository.Datasource.ReportDAO.ReportDAO;
 
@@ -11,11 +13,10 @@ import repository.Datasource.ReportDAO.ReportDAO;
  *
  * @author dougl
  */
-public class ReportDAOSQLiteFactory implements IStrategyFactoryReportDAO{
+public class ReportDAOSQLiteFactory implements IStrategyFactoryReportDAO {
 
     @Override
     public IReportDAO create() {
         return new ReportDAO();
     }
-    
 }
