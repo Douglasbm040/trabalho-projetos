@@ -41,7 +41,7 @@ Cada usuário pode alterar sua senha a qualquer momento, desde que autenticado.
 RF08 - Registro em Arquivo (Log de Sistema):
 O sistema deve registrar operações específicas em um arquivo de log, incluindo inclusão, alteração ou exclusão de usuários, envio e leitura de notificações, alteração de senha e autorização de usuário.
 
-## REQUISITOS NÃO FUNCIONAIS
+### REQUISITOS NÃO FUNCIONAIS
 RNF01 – Casos de uso do tipo CRUD com State
 Os casos de uso do tipo CRUD devem seguir o que foi ministrado e debatido em aula, utilizando o padrão de navegação entre janelas disponível em https://whimsical.com/crud-manter-HcNY9D491ajiNZ7j8EA7Y9
 
