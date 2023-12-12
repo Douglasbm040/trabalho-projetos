@@ -28,8 +28,8 @@ public class GerenciarUsuariosPresenterStateAdmin extends PresenterStateAdmin {
         principalPresenter.getInstance(user).setState(new CriarNovoUsuarioPresenterStateAdmin(new CriarNovoUsuarioPresenterAdmin(user), user));
     }
     @Override
-    public void editarUsuario(){
-        principalPresenter.getInstance(user).setState(new EditarUsuarioPresenterStateAdmin(new EditarUsuarioPresenterAdmin(user), user));
+    public void editarUsuario(User userEdit){
+        principalPresenter.getInstance(user).setState(new EditarUsuarioPresenterStateAdmin(new EditarUsuarioPresenterAdmin(user, userEdit), user));
     }
     
     @Override

@@ -35,7 +35,7 @@ public abstract class PresenterStateAdmin {
         throw new RuntimeException("Não é possível ver os usuários");
     }
 
-    public void editarUsuario() {
+    public void editarUsuario(User userEdit) {
         throw new RuntimeException("Não é possível editar usuários");
     }
 

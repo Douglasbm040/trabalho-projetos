@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import model.RelatorioUsuario;
 import model.User;
@@ -51,26 +53,18 @@ public class GerenciarUsuariosPresenterAdmin extends IPresenterAdmin {
 
     @Override
     public void configuraTela() {
+        view.getBtnEditar().setEnabled(false);
+        view.getBtnExcluir().setEnabled(false);
         ReportDAOSQLiteFactory reportFactory = new ReportDAOSQLiteFactory();
         List<RelatorioUsuario> relUserList = reportFactory.create().selectQtdNotificationSended(userState);
 
         DefaultTableModel model = (DefaultTableModel) view.getTblUsuarios().getModel();
 
         for (RelatorioUsuario relUser : relUserList) {
-            // Substitua os valores abaixo pelos atributos reais do seu objeto User
             System.out.println(relUser.getName() + "\n" + relUser.getQtdNotificacoesEnviadas());
             Object[] rowData = {relUser.getName(), relUser.getRegisterDate(), relUser.getQtdNotificacoesEnviadas(), relUser.getQtdNotificacoesLidas()};
             model.addRow(rowData);
         }
-        
-       // model.fireTableDataChanged();
-//        DefaultTableModel modelo = (DefaultTableModel) view.getTblNotificacoes().getModel();
-//
-//        for (Notification notificationUser : listNotificationAdmin) {
-//            String conteudo = notificationUser.getContent();
-//            Object[] dadosLinha = {notificationUser.getContent(),"user",notificationUser.getDataEnvio(),"lida"};  // Criar um array com o conteúdo
-//            modelo.addRow(dadosLinha);
-//        }
         
         view.getBtnFechar().addActionListener(new ActionListener() {
             @Override
@@ -78,16 +72,48 @@ public class GerenciarUsuariosPresenterAdmin extends IPresenterAdmin {
                 state.fechar();
             }
         });
+        view.getTblUsuarios().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                // Verificar se há uma linha selecionada
+                boolean linhaSelecionada = view.getTblUsuarios().getSelectedRow() != -1;
+
+                // Ativar ou desativar o botão com base na presença de uma linha selecionada
+                view.getBtnEditar().setEnabled(linhaSelecionada);
+                view.getBtnExcluir().setEnabled(linhaSelecionada);
+            }
+        });
         view.getBtnEditar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                state.editarUsuario();
+                UserDAOSQLiteFactory userFactory = new UserDAOSQLiteFactory(); 
+                int row = view.getTblUsuarios().getSelectedRow();
+
+                User userEdit = userFactory.create().selectById(relUserList.get(row).getIdUser());
+                state.editarUsuario(userEdit);
             }
         });
         view.getBtnNovo().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 state.criarNovoUsuario();
+            }
+        });
+        view.getBtnBuscar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                List<RelatorioUsuario> relUserList = reportFactory.create().selectQtdNotificationSended(userState);
+
+                DefaultTableModel model = (DefaultTableModel) view.getTblUsuarios().getModel();
+                
+                model.setRowCount(0);
+                
+                for (RelatorioUsuario relUser : relUserList) {
+                    System.out.println(relUser.getName() + "\n" + relUser.getQtdNotificacoesEnviadas());
+                    Object[] rowData = {relUser.getName(), relUser.getRegisterDate(), relUser.getQtdNotificacoesEnviadas(), relUser.getQtdNotificacoesLidas()};
+                    model.addRow(rowData);
+                }
             }
         });
     }

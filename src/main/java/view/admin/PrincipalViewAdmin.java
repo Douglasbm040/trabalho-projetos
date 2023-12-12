@@ -67,7 +67,7 @@ public class PrincipalViewAdmin extends javax.swing.JFrame {
 
         lblTipoUsuarioRodape.setText("Tipo:");
 
-        btnNotificacao.setIcon(new javax.swing.ImageIcon("C:\\Users\\isaac\\Documents\\Faculdade\\2023-2\\Projetos de Sistemas de Software\\trabalho-projetos\\img\\notificacao.png")); // NOI18N
+        btnNotificacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/notificacao.png"))); // NOI18N
         btnNotificacao.setText("0");
         btnNotificacao.setBorderPainted(false);
         btnNotificacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

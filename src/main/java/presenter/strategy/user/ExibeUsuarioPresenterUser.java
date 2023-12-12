@@ -45,8 +45,8 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser {
 
         });
         if (getUserState() != null) {
-            view.getTxtUsuario().setText(getUserState().getTokenAccess()); //verifica se ta invertido usurio e senha no front
-            view.getTxtSenha().setText(getUserState().getName());
+            view.getTxtUsuario().setText(getUserState().getName());
+            view.getTxtSenha().setText(getUserState().getTokenAccess());
         }
     }
 

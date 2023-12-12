@@ -6,8 +6,11 @@ package presenter.strategy.admin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JInternalFrame;
 import model.User;
+import repository.Datasource.Factories.UserFactory.UserDAOSQLiteFactory;
 import state.admin.CriarNovoUsuarioPresenterStateAdmin;
 import state.admin.EditarUsuarioPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
@@ -22,6 +25,7 @@ public class CriarNovoUsuarioPresenterAdmin extends IPresenterAdmin {
     private CriarNovoUsuarioViewAdmin view;
     private PresenterStateAdmin state;
     private User userState;
+    UserDAOSQLiteFactory UserFactory = new UserDAOSQLiteFactory();
     
     public CriarNovoUsuarioPresenterAdmin(User user) {
         userState = user;
@@ -38,6 +42,20 @@ public class CriarNovoUsuarioPresenterAdmin extends IPresenterAdmin {
 
     @Override
     public void configuraTela() {
+        view.getBtnSalvar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LocalDateTime dataAtual = LocalDateTime.now();
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                String dataAtualFormatada = dataAtual.format(formato);
+                
+                String nome = view.getTxtNome().getText();
+                String senha = view.getTxtSenha().getText();
+                User newUser = new User(nome, senha, 2, dataAtualFormatada);
+                UserFactory.create().insertUser(newUser);
+                state.fechar();
+            }
+        });
         view.getBtnCancelar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

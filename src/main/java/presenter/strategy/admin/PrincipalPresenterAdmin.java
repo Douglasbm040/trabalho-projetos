@@ -73,8 +73,8 @@ public class PrincipalPresenterAdmin extends IPresenterAdmin {
                 state.verNotificacoes();
             }
         });
-        int countNotification = listNotificationAdmin.size() - 1;
-        view.getBtnNotificacao().setText("" + countNotification);
+        int countNotification = listNotificationAdmin.size();
+        view.getBtnNotificacao().setText("Notificações: " + countNotification);
         if (userState != null) {
             view.getLblTipoUsuarioRodape().setText("Tipo: Admin");
             view.getLblUsuarioRodape().setText("Usuário: "+ userState.getName());

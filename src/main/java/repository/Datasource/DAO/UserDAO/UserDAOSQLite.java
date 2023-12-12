@@ -32,7 +32,7 @@ public class UserDAOSQLite implements IUserDAO {
             preparedStatement.setString(2, user.getTokenAccess());
             preparedStatement.setInt(3, user.getTagAccess());
             preparedStatement.setString(4, user.getRegisterDate());
-            
+
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
@@ -67,6 +67,31 @@ public class UserDAOSQLite implements IUserDAO {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, userId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    String name = resultSet.getString("NAME");
+                    String token = resultSet.getString("TOKEN_ACCESS");
+                    int tagAccess = resultSet.getInt("TAG_ACCESS");
+                    String registerDate = resultSet.getString("REGISTER_DATE");
+
+                    user = new User(name, token, tagAccess, registerDate);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
+    @Override
+    public User selectByName(String userName) {
+        String sql = "SELECT * FROM USER WHERE NAME = ?";
+        User user = null;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, userName);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -149,6 +174,33 @@ public class UserDAOSQLite implements IUserDAO {
         }
 
         return users;
+    }
+
+    @Override
+    public void updateUserById(User user) {
+        if (user == null || user.getName() == null || user.getTokenAccess() == null) {
+            System.out.println("Falha na atualização. Usuário ou dados inválidos.");
+            return;
+        }
+
+        String sql = "UPDATE USER SET NAME = ?, TOKEN_ACCESS = ? WHERE ID_USER = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getTokenAccess());
+            preparedStatement.setInt(3, user.getId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Atualização bem-sucedida!");
+            } else {
+                System.out.println("Falha na atualização. Nenhum usuário encontrado com ID: " + user.getId());
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao executar a atualização: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @Override

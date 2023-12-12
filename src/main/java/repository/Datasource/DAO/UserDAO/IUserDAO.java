@@ -17,11 +17,15 @@ public interface IUserDAO {
     
     public User selectById(int userId);
     
+    public User selectByName(String userName);
+    
     public List<User> selectUserAll();
     
     public List<User> selectUserAllTypeUser();
     
     public User selectAdmin();
+    
+    public void updateUserById(User user);
     
     public void  updateUserTagAccess(int tagAccess, int userId);
 

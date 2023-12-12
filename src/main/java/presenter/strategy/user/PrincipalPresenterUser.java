@@ -79,13 +79,13 @@ public class PrincipalPresenterUser extends IPresenterUser {
                 state.verNotificacoes();
             }
         });
-        int countNotification = listNotificationUser.size() - 1;
+        int countNotification = listNotificationUser.size();
         if (userState != null) {
             view.getLblTipoUsuarioRodape().setText("Tipo: User");
             view.getLblUsuarioRodape().setText("Usuário :"+ userState.getName());
         }
         
-        view.getBtnNotificacao().setText("" + countNotification);
+        view.getBtnNotificacao().setText("Notificações: " + countNotification);
         
     }
 
