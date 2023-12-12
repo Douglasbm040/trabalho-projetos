@@ -41,9 +41,9 @@ public class CadastroPresenter {
                 view.dispose();
             }
         });
-        UserDAOSQLiteFactory UserDAO = new UserDAOSQLiteFactory();
-        NotificationDAOSQLiteFactory notificationDAO = new NotificationDAOSQLiteFactory();
-        List<User> listUser = UserDAO.create().selectUserAll();
+        UserDAOSQLiteFactory UserFactory = new UserDAOSQLiteFactory();
+        NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
+        List<User> listUser = UserFactory.create().selectUserAll();
         view.getBtnCriarConta().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,19 +62,19 @@ public class CadastroPresenter {
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
                 if (retornoValidador.isEmpty()) {
                     if (listUser.isEmpty()) {
-                        int row = UserDAO.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 0));
+                        int row = UserFactory.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 0));
                         if (row > 0) {
                             LocalDateTime dataAtual = LocalDateTime.now();
                             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                             String dataAtualFormatada = dataAtual.format(formato);
-                            notificationDAO.Create().insertNotification(new Notification("O usuário"+view.getTxtUsuario() +"  solicio de acesso a usuário", dataAtualFormatada, row));
+                            notificationFactory.Create().insertNotification(new Notification("O usuário"+view.getTxtUsuario() +"  solicio de acesso a usuário", dataAtualFormatada, row));
                         }
                         JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                         view.dispose();
                         return;
                     }
                     
-                    UserDAO.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 2));
+                    UserFactory.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 2));
                     JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                     view.dispose();
                     return;

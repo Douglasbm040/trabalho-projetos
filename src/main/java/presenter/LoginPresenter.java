@@ -16,8 +16,11 @@ import Service.validation.Adapter.FactoryValidationMethodExtern;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.Notification;
 import model.User;
 import repository.Datasource.DAO.UserDAO.UserDAOSQLite;
+import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
+import repository.Datasource.Factories.UserFactory.UserDAOSQLiteFactory;
 import view.LoginView;
 
 /**
@@ -41,8 +44,9 @@ public class LoginPresenter {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Passou aqui1");
-                UserDAOSQLite UserDAO = new UserDAOSQLite();
-                List<User> listUser = UserDAO.selectUserAll();
+                UserDAOSQLiteFactory UserFactory = new UserDAOSQLiteFactory();
+                NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
+                List<User> listUser = UserFactory.create().selectUserAll();
                 final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
                 if (view.getTxtUsuario().getText().isBlank()) {
@@ -62,11 +66,13 @@ public class LoginPresenter {
                                 JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
                                 break;
                             case 1:
+                                // aqui tem que receber user e notificação
+                                List<Notification> listNotifications = notificationFactory.Create().SelectNotificationALL();
                                 PrincipalPresenterAdmin.getInstance();
                                 view.dispose();
                                 break;
                             case 2:
-                                System.out.println("Passou aqui2");
+                                
                                 PrincipalPresenterUser.getInstance(userCadastro);
                                 view.dispose();
                                 break;
