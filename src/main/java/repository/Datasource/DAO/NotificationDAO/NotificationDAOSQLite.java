@@ -68,7 +68,7 @@ public class NotificationDAOSQLite implements INotificationDAO {
     @Override
     public List<Notification> SelectNotificationALLAdmin() {
         List<Notification> listaNotification = new ArrayList<>();
-        String sql = "SELECT * FROM NOTIFICATION WHERE ID_USER_RECEIVER IN (SELECT ID_USER FROM USER WHERE TAG_ACCESS = 0)";
+        String sql = "SELECT * FROM NOTIFICATION WHERE ID_USER_RECEIVER IN (SELECT ID_USER FROM USER WHERE TAG_ACCESS = 1)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -130,7 +130,7 @@ public class NotificationDAOSQLite implements INotificationDAO {
     }
 
     @Override
-    public void deleteNotification(Notification notification, int id) {
+    public void deleteNotification(int id) {
         String sql = "DELETE FROM NOTIFICATION WHERE ID_NOTIFICATION = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
