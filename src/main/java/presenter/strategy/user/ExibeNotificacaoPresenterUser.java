@@ -6,6 +6,7 @@ package presenter.strategy.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.User;
 import state.user.ExibeNotificacaoPresenterStateUser;
 import state.user.PresenterStateUser;
 import view.user.DetalhesNotificacaoViewUser;
@@ -18,10 +19,12 @@ public class ExibeNotificacaoPresenterUser extends IPresenterUser {
 
     private DetalhesNotificacaoViewUser view;
     private PresenterStateUser state;
+    private User userState;
     
-    public ExibeNotificacaoPresenterUser() {
+    public ExibeNotificacaoPresenterUser(User user) {
+        userState = user;
         view = new DetalhesNotificacaoViewUser();
-        state = new ExibeNotificacaoPresenterStateUser(this);
+        state = new ExibeNotificacaoPresenterStateUser(this, userState);
 
         configuraTela();
 

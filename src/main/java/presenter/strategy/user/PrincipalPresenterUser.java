@@ -21,7 +21,7 @@ import view.user.PrincipalViewUser;
  *
  * @author isaac
  */
-public class PrincipalPresenterUser extends IPresenterUser implements IObserver<User> {
+public class PrincipalPresenterUser extends IPresenterUser {
 
     private static PrincipalPresenterUser instance;
 
@@ -29,14 +29,19 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
     private PresenterStateUser state;
     private User userState;
 
-    private PrincipalPresenterUser() {
+    private PrincipalPresenterUser(User user) {
         this.view = new PrincipalViewUser();
-        this.state = new InicialPresenterStateUser(this); 
+        this.state = new InicialPresenterStateUser(this, user); 
+        userState = user;
+        
+        configuraTela();
+        
+        view.setVisible(true);
     }
 
-    public static PrincipalPresenterUser getInstance() {
+    public static PrincipalPresenterUser getInstance(User user) {
         if (instance == null) {
-            instance = new PrincipalPresenterUser();
+            instance = new PrincipalPresenterUser(user);
         }
         return instance;
     }
@@ -52,6 +57,7 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
         view.getMenuSair().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                instance = null;
                 view.dispose();
                 LoginPresenter.getInstance();
             }
@@ -59,11 +65,8 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
         view.getMenuUsuario().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Observable observable = new UserObservable();
-                observable.notifyObserver(userState); 
-                  state.manterUsuarios();
+                state.manterUsuarios();
             }
-
         });
         view.getBtnNotificacao().addActionListener(new ActionListener() {
             @Override
@@ -75,7 +78,7 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
             view.getLblTipoUsuarioRodape().setText("Tipo: User");
             view.getLblUsuarioRodape().setText("Usuário :"+ userState.getName());
         }
-        view.setVisible(true);
+        
     }
 
     public User getUserState() {
@@ -88,12 +91,6 @@ public class PrincipalPresenterUser extends IPresenterUser implements IObserver<
 
     public PrincipalViewUser getViewPrin() {
         return view;
-    }
-
-    @Override
-    public void update(User obsersable) {
-        setUserState(obsersable);
-        configuraTela();
     }
 
 }

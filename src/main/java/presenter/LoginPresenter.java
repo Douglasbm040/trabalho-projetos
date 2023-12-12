@@ -40,6 +40,7 @@ public class LoginPresenter {
         view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Passou aqui1");
                 UserDAOSQLite UserDAO = new UserDAOSQLite();
                 List<User> listUser = UserDAO.selectUserAll();
                 final FactoryValidationMethodExtern validador = new FactoryValidationMethodExtern();
@@ -56,8 +57,6 @@ public class LoginPresenter {
                         }
                     }
                     if (userCadastro != null) {
-                        Observable observer = new UserObservable();
-                        observer.notifyObserver(userCadastro);
                         switch (userCadastro.getTagAccess()) {
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
@@ -67,7 +66,8 @@ public class LoginPresenter {
                                 view.dispose();
                                 break;
                             case 2:
-                                PrincipalPresenterUser.getInstance();
+                                System.out.println("Passou aqui2");
+                                PrincipalPresenterUser.getInstance(userCadastro);
                                 view.dispose();
                                 break;
                             default:

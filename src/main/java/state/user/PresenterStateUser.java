@@ -4,6 +4,7 @@
  */
 package state.user;
 
+import model.User;
 import presenter.strategy.admin.PrincipalPresenterAdmin;
 import presenter.strategy.user.IPresenterUser;
 import presenter.strategy.user.PrincipalPresenterUser;
@@ -15,9 +16,11 @@ import presenter.strategy.user.PrincipalPresenterUser;
 public abstract class PresenterStateUser {
     protected IPresenterUser presenter;
     protected PrincipalPresenterUser principalPresenter;
+    protected User user;
     
-    public PresenterStateUser (IPresenterUser presenter){
+    public PresenterStateUser (IPresenterUser presenter, User user){
         this.presenter = presenter;
+        this.user = user;
     }
     
     public void manterUsuarios(){

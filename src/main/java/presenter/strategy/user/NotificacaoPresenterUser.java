@@ -7,6 +7,7 @@ package presenter.strategy.user;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.User;
 import state.user.NotificacaoPresenterStateUser;
 import state.user.PresenterStateUser;
 import view.user.NotificacoesViewUser;
@@ -16,28 +17,28 @@ import view.user.NotificacoesViewUser;
  * @author isaac
  */
 public class NotificacaoPresenterUser extends IPresenterUser {
-    
+
     private NotificacoesViewUser view;
     private PresenterStateUser state;
     private static NotificacaoPresenterUser instance;
-    
-    private NotificacaoPresenterUser (){
+    private User userState;
+
+    private NotificacaoPresenterUser(User user) {
+        userState = user;
         view = new NotificacoesViewUser();
-        state = new NotificacaoPresenterStateUser(this);
+        state = new NotificacaoPresenterStateUser(this, userState);
         configuraTela();
         view.setVisible(true);
     }
-    
-    public static NotificacaoPresenterUser getInstance(){
+
+    public static NotificacaoPresenterUser getInstance(User user) {
         if (instance == null) {
-            System.out.println("Passou aquiiiii");
-            instance = new NotificacaoPresenterUser();
+            instance = new NotificacaoPresenterUser(user);
         }
-        
-        System.out.println("Passou aquiiiii2222222");
+
         return instance;
     }
-    
+
     @Override
     public void setState(PresenterStateUser state) {
         this.state = state;
@@ -58,7 +59,7 @@ public class NotificacaoPresenterUser extends IPresenterUser {
             }
         });
     }
-    
+
     @Override
     public javax.swing.JInternalFrame getView() {
         return view;

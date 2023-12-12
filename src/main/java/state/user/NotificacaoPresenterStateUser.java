@@ -4,6 +4,7 @@
  */
 package state.user;
 
+import model.User;
 import presenter.strategy.user.ExibeNotificacaoPresenterUser;
 import presenter.strategy.user.IPresenterUser;
 
@@ -13,18 +14,20 @@ import presenter.strategy.user.IPresenterUser;
  */
 public class NotificacaoPresenterStateUser extends PresenterStateUser {
     
-    public NotificacaoPresenterStateUser (IPresenterUser presenter){
-        super(presenter);
-        principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView(),0);
+    public NotificacaoPresenterStateUser (IPresenterUser presenter, User user){
+        super(presenter, user);
+        principalPresenter.getInstance(this.user).getViewPrin().getDkstpPrincipal().add(presenter.getView(),0);
         presenter.getView().setVisible(true);
     }
     
+    
     public void exibeNotificacao(){
-        principalPresenter.getInstance().setState(new ExibeNotificacaoPresenterStateUser(new ExibeNotificacaoPresenterUser()));
+        principalPresenter.getInstance(user).setState(new ExibeNotificacaoPresenterStateUser(new ExibeNotificacaoPresenterUser(user), user));
     }
     
+    
     public void fechar(){
-        principalPresenter.getInstance().setState(new InicialPresenterStateUser(principalPresenter.getInstance()));
+        principalPresenter.getInstance(user).setState(new InicialPresenterStateUser(principalPresenter.getInstance(user), user));
         presenter.getView().dispose();
     }
 }

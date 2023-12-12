@@ -4,6 +4,7 @@
  */
 package state.user;
 
+import model.User;
 import presenter.strategy.user.ExibeUsuarioPresenterUser;
 import presenter.strategy.user.IPresenterUser;
 import presenter.strategy.user.NotificacaoPresenterUser;
@@ -15,19 +16,19 @@ import presenter.strategy.user.PrincipalPresenterUser;
  */
 public class InicialPresenterStateUser extends PresenterStateUser {
     
-    public InicialPresenterStateUser(IPresenterUser presenter) {
-        super(presenter);
+    public InicialPresenterStateUser(IPresenterUser presenter, User user) {
+        super(presenter, user);
     }
     
     public void manterUsuarios(){
-        presenter.setState(new ExibeUsuarioPresenterStateUser(new ExibeUsuarioPresenterUser()));
+        presenter.setState(new ExibeUsuarioPresenterStateUser(new ExibeUsuarioPresenterUser(user), user));
     }
     
     public void verNotificacoes(){
-        presenter.setState(new NotificacaoPresenterStateUser(NotificacaoPresenterUser.getInstance()));
+        presenter.setState(new NotificacaoPresenterStateUser(NotificacaoPresenterUser.getInstance(user), user));
     }
     
     public void fechar(){
-        presenter.setState(new InicialPresenterStateUser(PrincipalPresenterUser.getInstance()));
+        presenter.setState(new InicialPresenterStateUser(PrincipalPresenterUser.getInstance(user), user));
     }
 }

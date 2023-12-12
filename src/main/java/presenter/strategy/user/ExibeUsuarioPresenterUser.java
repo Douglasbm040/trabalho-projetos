@@ -4,15 +4,9 @@
  */
 package presenter.strategy.user;
 
-import Service.observer.IObserver;
-import Service.observer.Observable;
-import Service.observer.UserObservable;
-import java.awt.Container;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.User;
-import presenter.LoginPresenter;
 import state.user.ExibeUsuarioPresenterStateUser;
 import state.user.PresenterStateUser;
 import view.user.ExibeUsuarioViewUser;
@@ -21,16 +15,18 @@ import view.user.ExibeUsuarioViewUser;
  *
  * @author isaac
  */
-public class ExibeUsuarioPresenterUser extends IPresenterUser implements IObserver<User> {
+public class ExibeUsuarioPresenterUser extends IPresenterUser {
 
     private ExibeUsuarioViewUser view;
     private PresenterStateUser state;
-
     private User userState;
 
-    public ExibeUsuarioPresenterUser() {
+    public ExibeUsuarioPresenterUser(User user) {
+        userState = user;
         this.view = new ExibeUsuarioViewUser();
-        this.state = new ExibeUsuarioPresenterStateUser(this);
+        this.state = new ExibeUsuarioPresenterStateUser(this, userState);
+        
+        configuraTela();
         view.setVisible(true);
     }
 
@@ -41,19 +37,16 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser implements IObserv
 
     @Override
     public void configuraTela() {
-        view.getBtnFechar().addActionListener(
-                new ActionListener() {
+        view.getBtnFechar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Observable observable = new UserObservable();
-                observable.notifyObserver(userState); 
                 state.fechar();
             }
 
         });
-        if(getUserState() != null){
+        if (getUserState() != null) {
             view.getTxtUsuario().setText(getUserState().getTokenAccess()); //verifica se ta invertido usurio e senha no front
-            view.getTxtSenha().setText(getUserState().getName()); 
+            view.getTxtSenha().setText(getUserState().getName());
         }
     }
 
@@ -68,14 +61,6 @@ public class ExibeUsuarioPresenterUser extends IPresenterUser implements IObserv
 
     public void setUserState(User userState) {
         this.userState = userState;
-    }
-
-    @Override
-    public void update(User obsersable) {
-        System.out.println(obsersable.getName());
-        System.out.println(obsersable.getTokenAccess());
-        setUserState(obsersable);
-        configuraTela();
     }
 
 }

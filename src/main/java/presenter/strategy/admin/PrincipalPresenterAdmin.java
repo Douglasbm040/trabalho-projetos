@@ -11,12 +11,7 @@ import java.awt.event.ActionListener;
 import presenter.LoginPresenter;
 import state.admin.InicialPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
-import state.user.InicialPresenterStateUser;
-import state.user.PresenterStateUser;
-import view.CadastroView;
-import view.LoginView;
 import view.admin.PrincipalViewAdmin;
-import view.user.PrincipalViewUser;
 
 /**
  *
