@@ -1,5 +1,7 @@
 2023/2 - Projeto de Sistemas de Software - Trabalho Final
+
 Alunos
+
 Douglas Bastos Merencio
 
 Isaack antony
@@ -10,8 +12,11 @@ O trabalho consistiu no desenvolvimento de um sistema para a gestão de usuário
 Para o desenvolvimento do mesmo, utilizamos dos padrões abordados em sala de aula para a criação de uma aplicação mais robusta e com maior manutenibilidade.
 Para ter o projeto em seu ambiente local, basta executar o seguinte comando:
 git clone https://github.com/Douglasbm040/trabalho-projetos.git
+
 REQUISITOS IMPLEMENTADOS
+
 REQUISITOS FUNCIONAIS
+
 RF01 - Cadastro de Administrador:
 O primeiro usuário se cadastra e se torna o administrador do sistema, habilitado para cadastrar outros usuários.
 
