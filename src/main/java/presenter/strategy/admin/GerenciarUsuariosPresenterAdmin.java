@@ -88,9 +88,16 @@ public class GerenciarUsuariosPresenterAdmin extends IPresenterAdmin {
             public void actionPerformed(ActionEvent e) {
                 UserDAOSQLiteFactory userFactory = new UserDAOSQLiteFactory(); 
                 int row = view.getTblUsuarios().getSelectedRow();
-
-                User userEdit = userFactory.create().selectById(relUserList.get(row).getIdUser());
-                state.editarUsuario(userEdit);
+                
+                System.out.println("Row: " + row);
+                System.out.println("List size: " + relUserList.size());
+                
+                List<RelatorioUsuario> listAtt = reportFactory.create().selectQtdNotificationSended(userState);
+                
+                if(row >= 0){
+                    User userEdit = userFactory.create().selectById(listAtt.get(row).getIdUser());
+                    state.editarUsuario(userEdit);
+                }
             }
         });
         view.getBtnNovo().addActionListener(new ActionListener() {

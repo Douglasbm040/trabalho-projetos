@@ -29,21 +29,21 @@ public class ReportDAO implements IReportDAO {
     @Override
     public List<RelatorioUsuario> selectQtdNotificationSended(User userAdmin) {
         String sql = "SELECT\n"
-                + "  USER.ID_USER,\n"
-                + "  USER.REGISTER_DATE,\n"
-                + "  USER.NAME,\n"
-                + "  COUNT(NOTIFICATION.ID_NOTIFICATION) AS QTD_NOTIFICACOES_ENVIADAS,\n"
-                + "  SUM(NOTIFICATION.IS_READ) AS QTD_NOTIFICACOES_LIDAS\n"
+                + "    U.ID_USER,\n"
+                + "    U.NAME,\n"
+                + "    U.REGISTER_DATE,\n"
+                + "    COUNT(N.ID_NOTIFICATION) AS QTD_NOTIFICACOES_ENVIADAS,\n"
+                + "    COALESCE(SUM(N.IS_READ), 0) AS QTD_NOTIFICACOES_LIDAS\n"
                 + "FROM\n"
-                + "  USER\n"
-                + "  LEFT JOIN NOTIFICATION\n"
-                + "  ON USER.ID_USER = NOTIFICATION.ID_USER_RECEIVER\n"
+                + "    USER U\n"
+                + "    LEFT JOIN NOTIFICATION N \n"
+                + "    ON U.ID_USER = N.ID_USER_RECEIVER AND N.ID_USER_SENDER = ?\n"
                 + "WHERE\n"
-                + "  NOTIFICATION.ID_USER_SENDER = ?\n"
+                + "    U.TAG_ACCESS = 2\n"
                 + "GROUP BY\n"
-                + "  USER.ID_USER,\n"
-                + "  USER.NAME, \n"
-                + "  USER.REGISTER_DATE";
+                + "    U.ID_USER,\n"
+                + "    U.NAME,\n"
+                + "    U.REGISTER_DATE;";
 
         List<RelatorioUsuario> listRel = new ArrayList<>();
 
