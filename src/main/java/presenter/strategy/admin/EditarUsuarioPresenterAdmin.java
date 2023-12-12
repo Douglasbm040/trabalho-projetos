@@ -54,6 +54,14 @@ public class EditarUsuarioPresenterAdmin extends IPresenterAdmin {
         view.getBtnSalvar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (view.getTxtNome().getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Campo de usuário não pode ser vazio!");
+                    return;
+                }
+                if (view.getTxtSenha().getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Campo senha não pode esta vazio !");
+                    return;
+                }
                 userEdit.setName(view.getTxtNome().getText());
                 userEdit.setTokenAccess(view.getTxtSenha().getText());
                 UserFactory.create().updateUserById(userEdit);

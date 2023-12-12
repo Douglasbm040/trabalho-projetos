@@ -16,6 +16,7 @@ public interface INotificationDAO {
      public List<Notification> SelectNotificationALLUser(int userId);
      public List<Notification> SelectNotificationALLAdmin();
      public void updateNotification(Notification notification, int id);
+     public void updateToRead(Notification notification);
      public void deleteNotificationALL();
      public void deleteNotification(int id);  
 }

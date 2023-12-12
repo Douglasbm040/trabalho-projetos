@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import model.User;
 import repository.Datasource.Factories.UserFactory.UserDAOSQLiteFactory;
 import state.admin.CriarNovoUsuarioPresenterStateAdmin;
@@ -51,8 +52,19 @@ public class CriarNovoUsuarioPresenterAdmin extends IPresenterAdmin {
                 
                 String nome = view.getTxtNome().getText();
                 String senha = view.getTxtSenha().getText();
+                
+                if (nome.isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Campo de usuário não pode ser vazio!");
+                    return;
+                }
+                if (senha.isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Campo senha não pode esta vazio !");
+                    return;
+                }
+                
                 User newUser = new User(nome, senha, 2, dataAtualFormatada);
                 UserFactory.create().insertUser(newUser);
+                JOptionPane.showMessageDialog(null, "Usuário inserido com sucesso!");
                 state.fechar();
             }
         });

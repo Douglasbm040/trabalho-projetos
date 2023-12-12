@@ -64,7 +64,7 @@ public class NotificationDAOSQLite implements INotificationDAO {
 
         return listaNotification;
     }
-
+    
     @Override
     public List<Notification> SelectNotificationALLAdmin() {
         List<Notification> listaNotification = new ArrayList<>();
@@ -111,7 +111,26 @@ public class NotificationDAOSQLite implements INotificationDAO {
             e.printStackTrace();
         }
     }
+    
+    @Override
+    public void updateToRead(Notification notification){
+        String sql = "UPDATE NOTIFICATION SET IS_READ = 1 WHERE ID_NOTIFICATION = ?";
 
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, notification.getIdNotification());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Atualização bem-sucedida!");
+            } else {
+                System.out.println("Falha na atualização. Notificação não encontrada.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @Override
     public void deleteNotificationALL() {
         String sql = "DELETE FROM NOTIFICATION";

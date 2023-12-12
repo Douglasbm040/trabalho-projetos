@@ -7,6 +7,7 @@ package presenter.strategy.admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import model.Notification;
 import model.User;
 import repository.Datasource.DAO.NotificationDAO.NotificationDAOSQLite;
@@ -52,16 +53,19 @@ public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
         view.getBtnAceitar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Usuário aceito no sistema!");
                 user.create().updateUserTagAccess(2, notification.getIdSender());
                 notificaDAO.Create().deleteNotification(notification.getIdNotification());
+                state.fechar();
             }
         });
          view.getBtnRecusar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Usuário rejeitado no sistema!");
                 notificaDAO.Create().deleteNotification(notification.getIdNotification());
                 user.create().deleteUser(notification.getIdSender());
-                                
+                state.fechar();          
             }
         });
         if(notification != null){

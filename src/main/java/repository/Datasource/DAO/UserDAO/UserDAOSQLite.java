@@ -74,8 +74,9 @@ public class UserDAOSQLite implements IUserDAO {
                     String token = resultSet.getString("TOKEN_ACCESS");
                     int tagAccess = resultSet.getInt("TAG_ACCESS");
                     String registerDate = resultSet.getString("REGISTER_DATE");
+                    int idUser = resultSet.getInt("ID_USER");
 
-                    user = new User(name, token, tagAccess, registerDate);
+                    user = new User(name, token, tagAccess,idUser, registerDate);
                 }
             }
         } catch (SQLException e) {
@@ -189,6 +190,11 @@ public class UserDAOSQLite implements IUserDAO {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getTokenAccess());
             preparedStatement.setInt(3, user.getId());
+            System.out.println("=============================");    
+            System.out.println(user.getName());
+            System.out.println(user.getTokenAccess());
+            System.out.println(user.getId());
+            System.out.println("=============================");    
 
             int rowsAffected = preparedStatement.executeUpdate();
 

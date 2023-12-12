@@ -66,7 +66,7 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
                 if(row >= 0){
                    state.verDetalhesNotificacao(listNotificationAdmin.get(row));
                 }
-                
+                notificationFactory.Create().updateToRead(listNotificationAdmin.get(row));
             }
         });
         view.getBtnNovaNotificacao().addActionListener(new ActionListener() {

@@ -40,7 +40,7 @@ public class CriarNovoUsuarioViewAdmin extends javax.swing.JInternalFrame {
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setTitle("Criar Novo Usuário");
 
-        lblNome.setText("Nome");
+        lblNome.setText("Usuário");
 
         lblSenha.setText("Senha");
 

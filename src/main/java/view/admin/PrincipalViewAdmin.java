@@ -67,8 +67,7 @@ public class PrincipalViewAdmin extends javax.swing.JFrame {
 
         lblTipoUsuarioRodape.setText("Tipo:");
 
-        btnNotificacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/util/img/notificacao.png"))); // NOI18N
-        btnNotificacao.setText("0");
+        btnNotificacao.setText("Notificações: 0");
         btnNotificacao.setBorderPainted(false);
         btnNotificacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNotificacao.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
@@ -82,7 +81,7 @@ public class PrincipalViewAdmin extends javax.swing.JFrame {
                 .addGroup(pnlRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTipoUsuarioRodape)
                     .addComponent(lblUsuarioRodape))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
                 .addComponent(btnNotificacao)
                 .addGap(28, 28, 28))
         );
@@ -91,11 +90,11 @@ public class PrincipalViewAdmin extends javax.swing.JFrame {
             .addGroup(pnlRodapeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnNotificacao)
                     .addGroup(pnlRodapeLayout.createSequentialGroup()
                         .addComponent(lblUsuarioRodape)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTipoUsuarioRodape)))
+                        .addComponent(lblTipoUsuarioRodape))
+                    .addComponent(btnNotificacao))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -104,7 +103,7 @@ public class PrincipalViewAdmin extends javax.swing.JFrame {
         menuGerenciarUsuarios.setText("Gerenciar Usuarios");
         menuOpcoes.add(menuGerenciarUsuarios);
 
-        menuSair.setText("Logout");
+        menuSair.setText("Sair");
         menuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuSairActionPerformed(evt);
@@ -131,7 +130,7 @@ public class PrincipalViewAdmin extends javax.swing.JFrame {
                 .addGap(73, 73, 73))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 312, Short.MAX_VALUE)
+                    .addGap(0, 316, Short.MAX_VALUE)
                     .addComponent(pnlRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 

@@ -58,7 +58,6 @@ public class PrincipalPresenterAdmin extends IPresenterAdmin {
             public void actionPerformed(ActionEvent e) {
                 instance = null;
                 view.dispose();
-                LoginPresenter.getInstance();
             }
         });
         view.getMenuGerenciarUsuarios().addActionListener(new ActionListener() {

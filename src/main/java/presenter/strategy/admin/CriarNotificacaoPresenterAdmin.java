@@ -81,7 +81,8 @@ public class CriarNotificacaoPresenterAdmin extends IPresenterAdmin {
                     String dataAtualFormatada = dataAtual.format(formato);
                     Notification notification = new Notification(view.getTxtAreaMensagem().getText(), dataAtualFormatada, userState.getId(), user.getId(), 0);
                     notificationDAO.Create().insertNotification(notification);
-                    JOptionPane.showMessageDialog(null, "Mensagem enviado !");
+                    JOptionPane.showMessageDialog(null, "Mensagem enviada!");
+                    state.fechar();
                     return;
                 }
                 JOptionPane.showMessageDialog(null, "Campo usuário não encontrado !");

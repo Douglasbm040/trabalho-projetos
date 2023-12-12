@@ -64,7 +64,6 @@ public class PrincipalPresenterUser extends IPresenterUser {
             public void actionPerformed(ActionEvent e) {
                 instance = null;
                 view.dispose();
-                LoginPresenter.getInstance();
             }
         });
         view.getMenuUsuario().addActionListener(new ActionListener() {

@@ -66,11 +66,15 @@ public class PrincipalViewUser extends javax.swing.JFrame {
 
         lblTipoUsuarioRodape.setText("Tipo:");
 
-        btnNotificacao.setIcon(new javax.swing.ImageIcon("C:\\Users\\isaac\\Documents\\Faculdade\\2023-2\\Projetos de Sistemas de Software\\trabalho-projetos\\img\\notificacao.png")); // NOI18N
-        btnNotificacao.setText("0");
+        btnNotificacao.setText("Notificações: 0");
         btnNotificacao.setBorderPainted(false);
         btnNotificacao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNotificacao.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        btnNotificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotificacaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlRodapeLayout = new javax.swing.GroupLayout(pnlRodape);
         pnlRodape.setLayout(pnlRodapeLayout);
@@ -81,7 +85,7 @@ public class PrincipalViewUser extends javax.swing.JFrame {
                 .addGroup(pnlRodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTipoUsuarioRodape)
                     .addComponent(lblUsuarioRodape))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
                 .addComponent(btnNotificacao)
                 .addGap(28, 28, 28))
         );
@@ -103,7 +107,7 @@ public class PrincipalViewUser extends javax.swing.JFrame {
         menuUsuario.setText("Usuario");
         menuOpcoes.add(menuUsuario);
 
-        menuSair.setText("Logout");
+        menuSair.setText("Sair");
         menuSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuSairActionPerformed(evt);
@@ -130,7 +134,7 @@ public class PrincipalViewUser extends javax.swing.JFrame {
                 .addGap(73, 73, 73))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 312, Short.MAX_VALUE)
+                    .addGap(0, 316, Short.MAX_VALUE)
                     .addComponent(pnlRodape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -141,6 +145,10 @@ public class PrincipalViewUser extends javax.swing.JFrame {
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuSairActionPerformed
+
+    private void btnNotificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNotificacaoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNotificacao;
