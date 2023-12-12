@@ -73,7 +73,6 @@ public class NotificacaoPresenterUser extends IPresenterUser {
                     state.exibeNotificacao(listNotificationUser.get(row));
                 }
                 notificationFactory.Create().updateToRead(listNotificationUser.get(row));
-                System.out.println("----------");
                 listNotificationUser.get(row).getContent();
             }
 
@@ -85,7 +84,7 @@ public class NotificacaoPresenterUser extends IPresenterUser {
         for (Notification notificationUser : listNotificationUser) {
             String isRead  = notificationUser.getIsRead() == 0 ? "não lida" : "lida";
             String conteudo = notificationUser.getContent();
-            Object[] dadosLinha = {notificationUser.getContent(),userFactory.create().selectById(notificationUser.getIdReceptor()).getName(),notificationUser.getDataEnvio(),isRead};  // Criar um array com o conteúdo
+            Object[] dadosLinha = {notificationUser.getContent(),userFactory.create().selectById(notificationUser.getIdSender()).getName(),notificationUser.getDataEnvio(),isRead};  // Criar um array com o conteúdo
             modelo.addRow(dadosLinha);
         }
         

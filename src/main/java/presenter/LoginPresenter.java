@@ -40,7 +40,6 @@ public class LoginPresenter {
         view.getBtnEntrar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Passou aqui1");
                 UserDAOSQLiteFactory UserFactory = new UserDAOSQLiteFactory();
                 NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
                 List<User> listUser = UserFactory.create().selectUserAll();
@@ -72,8 +71,6 @@ public class LoginPresenter {
                                 JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
                                 break;
                             case 1:
-                                // aqui tem que receber user e notificação
-                                //List<Notification> listNotifications = notificationFactory.Create().SelectNotificationALL();
                                 PrincipalPresenterAdmin.getInstance(userCadastro);
                                 view.dispose();
                                 break;
