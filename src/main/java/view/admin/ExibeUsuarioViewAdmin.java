@@ -34,6 +34,8 @@ public class ExibeUsuarioViewAdmin extends javax.swing.JInternalFrame {
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
+        setTitle("Exibir Usuario");
+
         lblNome.setText("Nome");
 
         lblSenha.setText("Senha");

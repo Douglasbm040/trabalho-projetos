@@ -7,6 +7,7 @@ package presenter.strategy.admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JInternalFrame;
+import model.User;
 import state.admin.GerenciarUsuariosPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
 import view.admin.GerenciarUsuariosViewAdmin;
@@ -18,13 +19,23 @@ import view.admin.GerenciarUsuariosViewAdmin;
 public class GerenciarUsuariosPresenterAdmin extends IPresenterAdmin {
     private GerenciarUsuariosViewAdmin view;
     private PresenterStateAdmin state;
+    private User userState;
+    private static GerenciarUsuariosPresenterAdmin instance;
     
-    public GerenciarUsuariosPresenterAdmin (){
+    private GerenciarUsuariosPresenterAdmin (User user){
+        userState = user;
         this.view = new GerenciarUsuariosViewAdmin();
-        this.state = new GerenciarUsuariosPresenterStateAdmin(this);
+        this.state = new GerenciarUsuariosPresenterStateAdmin(this, userState);
         
         configuraTela();
     }
+    
+    public static GerenciarUsuariosPresenterAdmin getInstance(User user){
+        if(instance == null){
+            instance = new GerenciarUsuariosPresenterAdmin(user);
+        }
+        return instance;
+    } 
     
     @Override
     public void setState(PresenterStateAdmin state) {
@@ -37,6 +48,18 @@ public class GerenciarUsuariosPresenterAdmin extends IPresenterAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 state.fechar();
+            }
+        });
+        view.getBtnEditar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.editarUsuario();
+            }
+        });
+        view.getBtnNovo().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.criarNovoUsuario();
             }
         });
     }

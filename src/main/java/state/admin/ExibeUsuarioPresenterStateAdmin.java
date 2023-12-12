@@ -4,11 +4,9 @@
  */
 package state.admin;
 
+import model.User;
 import presenter.strategy.admin.IPresenterAdmin;
 import presenter.strategy.admin.NotificacaoPresenterAdmin;
-import presenter.strategy.admin.PrincipalPresenterAdmin;
-import state.user.*;
-import presenter.strategy.user.PrincipalPresenterUser;
 
 /**
  *
@@ -17,16 +15,16 @@ import presenter.strategy.user.PrincipalPresenterUser;
 
 public class ExibeUsuarioPresenterStateAdmin extends PresenterStateAdmin {
 
-    public ExibeUsuarioPresenterStateAdmin(IPresenterAdmin presenter) {
-        super(presenter);
+    public ExibeUsuarioPresenterStateAdmin(IPresenterAdmin presenter, User user) {
+        super(presenter, user);
 
-        principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView());
+        principalPresenter.getInstance(user).getViewPrin().getDkstpPrincipal().add(presenter.getView());
         presenter.getView().setVisible(true);
     }
     
     @Override
     public void fechar() {
-        principalPresenter.getInstance().setState(new InicialPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance()));
+        principalPresenter.getInstance(user).setState(new InicialPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance(user), user));
         presenter.getView().dispose();
     }
     

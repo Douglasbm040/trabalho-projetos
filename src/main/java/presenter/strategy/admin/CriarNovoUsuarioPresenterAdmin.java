@@ -8,24 +8,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JInternalFrame;
 import model.User;
-import state.admin.ExibeNotificacaoPresenterStateAdmin;
+import state.admin.CriarNovoUsuarioPresenterStateAdmin;
+import state.admin.EditarUsuarioPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
-import view.admin.DetalhesNotificacaoViewAdmin;
+import view.admin.CriarNovoUsuarioViewAdmin;
+import view.admin.EditarUsuarioViewAdmin;
 
 /**
  *
  * @author isaac
  */
-public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
-    
-    private DetalhesNotificacaoViewAdmin view;
+public class CriarNovoUsuarioPresenterAdmin extends IPresenterAdmin {
+    private CriarNovoUsuarioViewAdmin view;
     private PresenterStateAdmin state;
     private User userState;
     
-    public ExibeNotificacaoPresenterAdmin(User user) {
+    public CriarNovoUsuarioPresenterAdmin(User user) {
         userState = user;
-        view = new DetalhesNotificacaoViewAdmin();
-        state = new ExibeNotificacaoPresenterStateAdmin(this, user);
+        view = new CriarNovoUsuarioViewAdmin();
+        state = new CriarNovoUsuarioPresenterStateAdmin(this, user);
         
         configuraTela();
     }
@@ -37,7 +38,7 @@ public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
 
     @Override
     public void configuraTela() {
-        view.getBtnFechar().addActionListener(new ActionListener() {
+        view.getBtnCancelar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 state.fechar();

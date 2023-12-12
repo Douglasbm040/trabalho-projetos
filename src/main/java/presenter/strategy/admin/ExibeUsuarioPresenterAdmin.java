@@ -4,6 +4,7 @@
  */
 package presenter.strategy.admin;
 
+import model.User;
 import state.admin.ExibeUsuarioPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
 import view.admin.ExibeUsuarioViewAdmin;
@@ -16,10 +17,12 @@ public class ExibeUsuarioPresenterAdmin extends IPresenterAdmin {
     
     private ExibeUsuarioViewAdmin view;
     private PresenterStateAdmin state;
+    private User userState;
     
-    public ExibeUsuarioPresenterAdmin() {
+    public ExibeUsuarioPresenterAdmin(User user) {
+        userState = user;
         view = new ExibeUsuarioViewAdmin();
-        state = new ExibeUsuarioPresenterStateAdmin(this);
+        state = new ExibeUsuarioPresenterStateAdmin(this, userState);
         
         configuraTela();
     }

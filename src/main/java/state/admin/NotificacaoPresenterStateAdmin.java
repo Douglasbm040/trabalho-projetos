@@ -4,26 +4,35 @@
  */
 package state.admin;
 
-import state.user.*;
-import presenter.strategy.user.ExibeUsuarioPresenterUser;
+import model.User;
+import presenter.strategy.admin.CriarNotificacaoPresenterAdmin;
+import presenter.strategy.admin.ExibeNotificacaoPresenterAdmin;
 import presenter.strategy.admin.IPresenterAdmin;
-import presenter.strategy.admin.PrincipalPresenterAdmin;
-import presenter.strategy.user.PrincipalPresenterUser;
 
 /**
  *
  * @author isaac
  */
 public class NotificacaoPresenterStateAdmin extends PresenterStateAdmin {
-    public NotificacaoPresenterStateAdmin (IPresenterAdmin presenter){
-        super(presenter);
-        principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
+    public NotificacaoPresenterStateAdmin (IPresenterAdmin presenter, User user){
+        super(presenter, user);
+        principalPresenter.getInstance(user).getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
         presenter.getView().setVisible(true);
     }
     
     @Override
+    public void criarNovaNotificacao(){
+        principalPresenter.getInstance(user).setState(new CriarNotificacaoPresenterStateAdmin(new CriarNotificacaoPresenterAdmin(user), user));
+    }
+    
+    @Override
+    public void verDetalhesNotificacao(){
+        principalPresenter.getInstance(user).setState(new ExibeNotificacaoPresenterStateAdmin(new ExibeNotificacaoPresenterAdmin(user), user));
+    }
+    
+    @Override
     public void fechar(){
-        principalPresenter.getInstance().setState(new InicialPresenterStateAdmin(principalPresenter.getInstance()));
+        principalPresenter.getInstance(user).setState(new InicialPresenterStateAdmin(principalPresenter.getInstance(user), user));
         presenter.getView().dispose();
     }
 }

@@ -32,8 +32,8 @@ public class DetalhesNotificacaoViewUser extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitulo = new javax.swing.JLabel();
-        txtTitulo = new javax.swing.JTextField();
+        lblData = new javax.swing.JLabel();
+        txtData = new javax.swing.JTextField();
         lblRemetente = new javax.swing.JLabel();
         txtRemetente = new javax.swing.JTextField();
         lblMensagem = new javax.swing.JLabel();
@@ -44,9 +44,9 @@ public class DetalhesNotificacaoViewUser extends javax.swing.JInternalFrame {
         setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setTitle("Detalhes");
 
-        lblTitulo.setText("Titulo");
+        lblData.setText("Data");
 
-        txtTitulo.setEditable(false);
+        txtData.setEditable(false);
 
         lblRemetente.setText("Remetente");
 
@@ -80,25 +80,25 @@ public class DetalhesNotificacaoViewUser extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblRemetente)
-                                    .addComponent(lblTitulo))
+                                    .addComponent(lblData))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTitulo)
+                                    .addComponent(txtData)
                                     .addComponent(txtRemetente, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTitulo))
-                .addGap(18, 18, 18)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRemetente)
                     .addComponent(txtRemetente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblData))
+                .addGap(18, 18, 18)
                 .addComponent(lblMensagem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,12 +114,12 @@ public class DetalhesNotificacaoViewUser extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFechar;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblMensagem;
     private javax.swing.JLabel lblRemetente;
-    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextArea txtAreaMensagem;
+    private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtRemetente;
-    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 
     public JButton getBtnFechar() {
@@ -138,8 +138,8 @@ public class DetalhesNotificacaoViewUser extends javax.swing.JInternalFrame {
         return lblRemetente;
     }
 
-    public JLabel getLblTitulo() {
-        return lblTitulo;
+    public JLabel getLblData() {
+        return lblData;
     }
 
     public JTextArea getTxtAreaMensagem() {
@@ -150,8 +150,8 @@ public class DetalhesNotificacaoViewUser extends javax.swing.JInternalFrame {
         return txtRemetente;
     }
 
-    public JTextField getTxtTitulo() {
-        return txtTitulo;
+    public JTextField getTxtData() {
+        return txtData;
     }
     
     

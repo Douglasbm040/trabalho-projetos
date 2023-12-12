@@ -8,6 +8,7 @@ package presenter.strategy.admin;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.User;
 import presenter.LoginPresenter;
 import state.admin.InicialPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
@@ -23,17 +24,19 @@ public class PrincipalPresenterAdmin extends IPresenterAdmin {
 
     private PrincipalViewAdmin view;
     private PresenterStateAdmin state;
-
-    private PrincipalPresenterAdmin() {
+    private User userState;
+    
+    private PrincipalPresenterAdmin(User user) {
+        userState = user;
         this.view = new PrincipalViewAdmin();
-        this.state = new InicialPresenterStateAdmin(this);
+        this.state = new InicialPresenterStateAdmin(this, user);
 
         configuraTela();
     }
 
-    public static PrincipalPresenterAdmin getInstance() {
+    public static PrincipalPresenterAdmin getInstance(User user) {
         if (instance == null) {
-            instance = new PrincipalPresenterAdmin();
+            instance = new PrincipalPresenterAdmin(user);
         }
         return instance;
     }
@@ -49,6 +52,7 @@ public class PrincipalPresenterAdmin extends IPresenterAdmin {
         view.getMenuSair().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                instance = null;
                 view.dispose();
                 LoginPresenter.getInstance();
             }

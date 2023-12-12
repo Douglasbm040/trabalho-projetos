@@ -7,6 +7,7 @@ package presenter.strategy.admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JInternalFrame;
+import model.User;
 import state.admin.NotificacaoPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
 import view.admin.NotificacoesViewAdmin;
@@ -19,17 +20,19 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
     private NotificacoesViewAdmin view;
     private PresenterStateAdmin state;
     private static NotificacaoPresenterAdmin instance;
+    private User userState;
     
-    private NotificacaoPresenterAdmin() {
+    private NotificacaoPresenterAdmin(User user) {
+        userState = user;
         view = new NotificacoesViewAdmin();
-        state = new NotificacaoPresenterStateAdmin(this);
+        state = new NotificacaoPresenterStateAdmin(this, userState);
         
         configuraTela();
     }
     
-    public static NotificacaoPresenterAdmin getInstance(){
+    public static NotificacaoPresenterAdmin getInstance(User user){
         if(instance == null){
-            instance = new NotificacaoPresenterAdmin();
+            instance = new NotificacaoPresenterAdmin(user);
         }
         
         return instance;
@@ -46,6 +49,18 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 state.fechar();
+            }
+        });
+        view.getBtnAbrirNotificacao().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.verDetalhesNotificacao();
+            }
+        });
+        view.getBtnNovaNotificacao().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                state.criarNovaNotificacao();
             }
         });
     }

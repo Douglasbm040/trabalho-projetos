@@ -4,9 +4,11 @@
  */
 package state.admin;
 
+import model.User;
 import presenter.strategy.admin.GerenciarUsuariosPresenterAdmin;
 import presenter.strategy.admin.IPresenterAdmin;
 import presenter.strategy.admin.NotificacaoPresenterAdmin;
+import presenter.strategy.admin.PrincipalPresenterAdmin;
 
 /**
  *
@@ -14,19 +16,19 @@ import presenter.strategy.admin.NotificacaoPresenterAdmin;
  */
 public class InicialPresenterStateAdmin extends PresenterStateAdmin {
     
-    public InicialPresenterStateAdmin(IPresenterAdmin presenter) {
-        super(presenter);
+    public InicialPresenterStateAdmin(IPresenterAdmin presenter, User user) {
+        super(presenter, user);
     }
     
     public void manterUsuarios(){
-        presenter.setState(new GerenciarUsuariosPresenterStateAdmin(new GerenciarUsuariosPresenterAdmin()));
+        presenter.setState(new GerenciarUsuariosPresenterStateAdmin(GerenciarUsuariosPresenterAdmin.getInstance(user), user));
     }
     
     public void verNotificacoes(){
-        presenter.setState(new NotificacaoPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance()));
+        presenter.setState(new NotificacaoPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance(user), user));
     }
     
     public void fechar(){
-       // presenter.setState(new InicialPresenterStateAdmin(PrincipalPresenterUser.getInstance()));
+        presenter.setState(new InicialPresenterStateAdmin(PrincipalPresenterAdmin.getInstance(user), user));
     }
 }

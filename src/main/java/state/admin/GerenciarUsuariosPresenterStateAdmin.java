@@ -4,14 +4,11 @@
  */
 package state.admin;
 
+import model.User;
+import presenter.strategy.admin.CriarNovoUsuarioPresenterAdmin;
+import presenter.strategy.admin.EditarUsuarioPresenterAdmin;
 import presenter.strategy.admin.ExibeUsuarioPresenterAdmin;
-import presenter.strategy.admin.GerenciarUsuariosPresenterAdmin;
 import presenter.strategy.admin.IPresenterAdmin;
-import presenter.strategy.admin.PrincipalPresenterAdmin;
-import state.user.*;
-import presenter.strategy.user.ExibeUsuarioPresenterUser;
-import presenter.strategy.user.IPresenterUser;
-import presenter.strategy.user.PrincipalPresenterUser;
 
 /**
  *
@@ -19,20 +16,30 @@ import presenter.strategy.user.PrincipalPresenterUser;
  */
 public class GerenciarUsuariosPresenterStateAdmin extends PresenterStateAdmin {
 
-    public GerenciarUsuariosPresenterStateAdmin(IPresenterAdmin presenter) {
-        super(presenter);
+    public GerenciarUsuariosPresenterStateAdmin(IPresenterAdmin presenter, User user) {
+        super(presenter, user);
 
-        principalPresenter.getInstance().getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
+        principalPresenter.getInstance(user).getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
         presenter.getView().setVisible(true);
     }
     
+    @Override
+    public void criarNovoUsuario(){
+        principalPresenter.getInstance(user).setState(new CriarNovoUsuarioPresenterStateAdmin(new CriarNovoUsuarioPresenterAdmin(user), user));
+    }
+    @Override
+    public void editarUsuario(){
+        principalPresenter.getInstance(user).setState(new EditarUsuarioPresenterStateAdmin(new EditarUsuarioPresenterAdmin(user), user));
+    }
+    
+    @Override
     public void exibirUsuario(){
-        principalPresenter.getInstance().setState(new ExibeUsuarioPresenterStateAdmin(new ExibeUsuarioPresenterAdmin()));
+        principalPresenter.getInstance(user).setState(new ExibeUsuarioPresenterStateAdmin(new ExibeUsuarioPresenterAdmin(user), user));
     }
     
     @Override
     public void fechar() {
-        principalPresenter.getInstance().setState(new InicialPresenterStateAdmin(principalPresenter.getInstance()));
+        principalPresenter.getInstance(user).setState(new InicialPresenterStateAdmin(principalPresenter.getInstance(user), user));
         presenter.getView().dispose();
     }
     

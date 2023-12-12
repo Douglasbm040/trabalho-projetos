@@ -12,8 +12,8 @@ import presenter.strategy.admin.NotificacaoPresenterAdmin;
  *
  * @author isaac
  */
-public class ExibeNotificacaoPresenterStateAdmin extends PresenterStateAdmin {
-    public ExibeNotificacaoPresenterStateAdmin (IPresenterAdmin presenter, User user){
+public class CriarNotificacaoPresenterStateAdmin extends PresenterStateAdmin {
+    public CriarNotificacaoPresenterStateAdmin (IPresenterAdmin presenter, User user){
         super(presenter, user);
         principalPresenter.getInstance(this.user).getViewPrin().getDkstpPrincipal().add(presenter.getView(), 0);
         presenter.getView().setVisible(true);

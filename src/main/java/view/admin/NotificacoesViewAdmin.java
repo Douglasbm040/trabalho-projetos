@@ -35,6 +35,7 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
         tblNotificacoes = new javax.swing.JTable();
         btnAbrirNotificacao = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
+        btnNovaNotificacao = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setTitle("Notificações");
@@ -45,14 +46,14 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Titulo", "Enviado por", "Lida"
+                "Breve mensagem", "Enviado por", "Data", "Lida"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -69,12 +70,14 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
         if (tblNotificacoes.getColumnModel().getColumnCount() > 0) {
             tblNotificacoes.getColumnModel().getColumn(0).setResizable(false);
             tblNotificacoes.getColumnModel().getColumn(1).setResizable(false);
-            tblNotificacoes.getColumnModel().getColumn(2).setResizable(false);
+            tblNotificacoes.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnAbrirNotificacao.setText("Abrir");
 
         btnFechar.setText("Fechar");
+
+        btnNovaNotificacao.setText("Nova Notificação");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,6 +91,8 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAbrirNotificacao, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(btnNovaNotificacao)
+                        .addGap(18, 18, 18)
                         .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -99,7 +104,8 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAbrirNotificacao)
-                    .addComponent(btnFechar))
+                    .addComponent(btnFechar)
+                    .addComponent(btnNovaNotificacao))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -110,6 +116,7 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirNotificacao;
     private javax.swing.JButton btnFechar;
+    private javax.swing.JButton btnNovaNotificacao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblNotificacoes;
     // End of variables declaration//GEN-END:variables
@@ -128,6 +135,10 @@ public class NotificacoesViewAdmin extends javax.swing.JInternalFrame {
 
     public JTable getTblNotificacoes() {
         return tblNotificacoes;
+    }
+
+    public JButton getBtnNovaNotificacao() {
+        return btnNovaNotificacao;
     }
     
     

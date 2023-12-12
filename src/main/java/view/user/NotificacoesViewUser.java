@@ -44,14 +44,14 @@ public class NotificacoesViewUser extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Titulo", "Enviado por", "Lida"
+                "Breve mensagem", "Enviado por", "Data", "Lida"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -66,9 +66,9 @@ public class NotificacoesViewUser extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblNotificacoes);
         tblNotificacoes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblNotificacoes.getColumnModel().getColumnCount() > 0) {
-            tblNotificacoes.getColumnModel().getColumn(0).setResizable(false);
             tblNotificacoes.getColumnModel().getColumn(1).setResizable(false);
             tblNotificacoes.getColumnModel().getColumn(2).setResizable(false);
+            tblNotificacoes.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnAbrirNotificacao.setText("Abrir");
