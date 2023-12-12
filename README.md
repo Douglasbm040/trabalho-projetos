@@ -1,21 +1,21 @@
-2023/2 - Projeto de Sistemas de Software - Trabalho Final
+# 2023/2 - Projeto de Sistemas de Software - Trabalho Final
 
-Alunos
+### Alunos
 
 Douglas Bastos Merencio
 
-Isaack antony
+Isaack Anthony Cordeiro Arcanjo
 
-Gestao de Usuarios
-INTRODUÇÃO
+## Gestao de Usuarios
+### INTRODUÇÃO
 O trabalho consistiu no desenvolvimento de um sistema para a gestão de usuários, com funcionalidades como, cadastro, edição e envio de notificações.
 Para o desenvolvimento do mesmo, utilizamos dos padrões abordados em sala de aula para a criação de uma aplicação mais robusta e com maior manutenibilidade.
 Para ter o projeto em seu ambiente local, basta executar o seguinte comando:
 git clone https://github.com/Douglasbm040/trabalho-projetos.git
 
-REQUISITOS IMPLEMENTADOS
+## REQUISITOS IMPLEMENTADOS
 
-REQUISITOS FUNCIONAIS
+### REQUISITOS FUNCIONAIS
 
 RF01 - Cadastro de Administrador:
 O primeiro usuário se cadastra e se torna o administrador do sistema, habilitado para cadastrar outros usuários.
@@ -41,7 +41,7 @@ Cada usuário pode alterar sua senha a qualquer momento, desde que autenticado.
 RF08 - Registro em Arquivo (Log de Sistema):
 O sistema deve registrar operações específicas em um arquivo de log, incluindo inclusão, alteração ou exclusão de usuários, envio e leitura de notificações, alteração de senha e autorização de usuário.
 
-REQUISITOS NÃO FUNCIONAIS
+## REQUISITOS NÃO FUNCIONAIS
 RNF01 – Casos de uso do tipo CRUD com State
 Os casos de uso do tipo CRUD devem seguir o que foi ministrado e debatido em aula, utilizando o padrão de navegação entre janelas disponível em https://whimsical.com/crud-manter-HcNY9D491ajiNZ7j8EA7Y9
 
