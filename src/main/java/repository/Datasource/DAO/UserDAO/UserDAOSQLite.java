@@ -156,8 +156,8 @@ public class UserDAOSQLite implements IUserDAO {
         String sql = "UPDATE USER SET TAG_ACCESS = ? WHERE ID_USER = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, tagAccess);
+            preparedStatement.setInt(2, userId);
+            preparedStatement.setInt(1, tagAccess);
 
             int rowsAffected = preparedStatement.executeUpdate();
 

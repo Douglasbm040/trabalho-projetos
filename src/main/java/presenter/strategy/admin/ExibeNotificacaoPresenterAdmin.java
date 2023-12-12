@@ -53,6 +53,7 @@ public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 user.create().updateUserTagAccess(2, notification.getIdSender());
+                notificaDAO.Create().deleteNotification(notification.getIdNotification());
             }
         });
          view.getBtnRecusar().addActionListener(new ActionListener() {
@@ -60,8 +61,7 @@ public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
             public void actionPerformed(ActionEvent e) {
                 notificaDAO.Create().deleteNotification(notification.getIdNotification());
                 user.create().deleteUser(notification.getIdSender());
-                
-                
+                                
             }
         });
         if(notification != null){
