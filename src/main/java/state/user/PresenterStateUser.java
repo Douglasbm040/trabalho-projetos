@@ -4,6 +4,7 @@
  */
 package state.user;
 
+import model.Notification;
 import model.User;
 import presenter.strategy.admin.PrincipalPresenterAdmin;
 import presenter.strategy.user.IPresenterUser;
@@ -31,7 +32,7 @@ public abstract class PresenterStateUser {
         throw new RuntimeException("Não é possível ver notificacoes");
     }
     
-    public void exibeNotificacao(){
+    public void exibeNotificacao(Notification notification){
         throw new RuntimeException("Não é possível ver a notificacao");
     }
     

@@ -4,6 +4,7 @@
  */
 package state.user;
 
+import model.Notification;
 import model.User;
 import presenter.strategy.user.ExibeNotificacaoPresenterUser;
 import presenter.strategy.user.IPresenterUser;
@@ -20,12 +21,12 @@ public class NotificacaoPresenterStateUser extends PresenterStateUser {
         presenter.getView().setVisible(true);
     }
     
-    
-    public void exibeNotificacao(){
-        principalPresenter.getInstance(user).setState(new ExibeNotificacaoPresenterStateUser(new ExibeNotificacaoPresenterUser(user), user));
+    @Override
+    public void exibeNotificacao(Notification notification){
+        principalPresenter.getInstance(user).setState(new ExibeNotificacaoPresenterStateUser(new ExibeNotificacaoPresenterUser(user,notification), user));
     }
     
-    
+    @Override
     public void fechar(){
         principalPresenter.getInstance(user).setState(new InicialPresenterStateUser(principalPresenter.getInstance(user), user));
         presenter.getView().dispose();

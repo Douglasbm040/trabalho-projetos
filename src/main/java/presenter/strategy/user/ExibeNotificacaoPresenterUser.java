@@ -6,6 +6,7 @@ package presenter.strategy.user;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.Notification;
 import model.User;
 import state.user.ExibeNotificacaoPresenterStateUser;
 import state.user.PresenterStateUser;
@@ -20,9 +21,12 @@ public class ExibeNotificacaoPresenterUser extends IPresenterUser {
     private DetalhesNotificacaoViewUser view;
     private PresenterStateUser state;
     private User userState;
+    private Notification notification;
+   
     
-    public ExibeNotificacaoPresenterUser(User user) {
+    public ExibeNotificacaoPresenterUser(User user,Notification notification) {
         userState = user;
+        this.notification = notification;
         view = new DetalhesNotificacaoViewUser();
         state = new ExibeNotificacaoPresenterStateUser(this, userState);
 
@@ -44,6 +48,11 @@ public class ExibeNotificacaoPresenterUser extends IPresenterUser {
                 state.fechar();
             }
         });
+        if(userState != null && notification != null){
+            view.getTxtData().setText(notification.getDataEnvio());
+            view.getTxtRemetente().setText("User");
+            view.getTxtAreaMensagem().setText(notification.getContent());
+        }
     }
 
     @Override

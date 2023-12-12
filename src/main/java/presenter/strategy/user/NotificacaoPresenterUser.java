@@ -8,6 +8,10 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import model.Notification;
 import model.User;
 import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
@@ -25,10 +29,10 @@ public class NotificacaoPresenterUser extends IPresenterUser {
     private PresenterStateUser state;
     private static NotificacaoPresenterUser instance;
     private User userState;
-    
+
     NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
-    private List<Notification> listNotificationUser ;
-    
+    private List<Notification> listNotificationUser;
+
     private NotificacaoPresenterUser(User user) {
         userState = user;
         view = new NotificacoesViewUser();
@@ -62,11 +66,25 @@ public class NotificacaoPresenterUser extends IPresenterUser {
         view.getBtnAbrirNotificacao().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                state.exibeNotificacao();
+                int row = view.getTblNotificacoes().getSelectedRow();
+                if(row >= 0){
+                    state.exibeNotificacao(listNotificationUser.get(row));
+                }
+                
             }
-            
+
         });
-       //view.getTblNotificacoes().add(, 0);
+
+        DefaultTableModel modelo = (DefaultTableModel) view.getTblNotificacoes().getModel();
+
+        for (Notification notificationUser : listNotificationUser) {
+            String conteudo = notificationUser.getContent();
+            Object[] dadosLinha = {notificationUser.getContent(),"user",notificationUser.getDataEnvio(),"lida"};  // Criar um array com o conteúdo
+            modelo.addRow(dadosLinha);
+        }
+        
+        
+        
     }
 
     @Override
