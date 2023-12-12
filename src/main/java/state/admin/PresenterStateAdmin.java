@@ -4,6 +4,7 @@
  */
 package state.admin;
 
+import model.Notification;
 import model.User;
 import presenter.strategy.admin.IPresenterAdmin;
 import state.user.*;
@@ -50,7 +51,7 @@ public abstract class PresenterStateAdmin {
         throw new RuntimeException("Não é possível ver notificacoes");
     }
 
-    public void verDetalhesNotificacao() {
+    public void verDetalhesNotificacao(Notification notification) {
         throw new RuntimeException("Não é possível ver detalhes das notificacoes");
     }
 

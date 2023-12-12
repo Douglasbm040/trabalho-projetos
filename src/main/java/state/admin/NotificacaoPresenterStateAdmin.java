@@ -4,6 +4,7 @@
  */
 package state.admin;
 
+import model.Notification;
 import model.User;
 import presenter.strategy.admin.CriarNotificacaoPresenterAdmin;
 import presenter.strategy.admin.ExibeNotificacaoPresenterAdmin;
@@ -26,8 +27,8 @@ public class NotificacaoPresenterStateAdmin extends PresenterStateAdmin {
     }
     
     @Override
-    public void verDetalhesNotificacao(){
-        principalPresenter.getInstance(user).setState(new ExibeNotificacaoPresenterStateAdmin(new ExibeNotificacaoPresenterAdmin(user), user));
+    public void verDetalhesNotificacao(Notification notification){
+        principalPresenter.getInstance(user).setState(new ExibeNotificacaoPresenterStateAdmin(new ExibeNotificacaoPresenterAdmin(user,notification), user));
     }
     
     @Override

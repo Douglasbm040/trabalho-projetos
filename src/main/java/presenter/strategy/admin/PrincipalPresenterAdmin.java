@@ -8,8 +8,11 @@ package presenter.strategy.admin;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import model.Notification;
 import model.User;
 import presenter.LoginPresenter;
+import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
 import state.admin.InicialPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
 import view.admin.PrincipalViewAdmin;
@@ -25,12 +28,13 @@ public class PrincipalPresenterAdmin extends IPresenterAdmin {
     private PrincipalViewAdmin view;
     private PresenterStateAdmin state;
     private User userState;
-    
+    NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
+    private List<Notification> listNotificationAdmin ;
     private PrincipalPresenterAdmin(User user) {
         userState = user;
         this.view = new PrincipalViewAdmin();
         this.state = new InicialPresenterStateAdmin(this, user);
-
+        listNotificationAdmin = notificationFactory.Create().SelectNotificationALLAdmin();
         configuraTela();
     }
 
@@ -69,6 +73,12 @@ public class PrincipalPresenterAdmin extends IPresenterAdmin {
                 state.verNotificacoes();
             }
         });
+        int countNotification = listNotificationAdmin.size() - 1;
+        view.getBtnNotificacao().setText("" + countNotification);
+        if (userState != null) {
+            view.getLblTipoUsuarioRodape().setText("Tipo: Admin");
+            view.getLblUsuarioRodape().setText("Usuário: "+ userState.getName());
+        }
         view.setVisible(true);
     }
     

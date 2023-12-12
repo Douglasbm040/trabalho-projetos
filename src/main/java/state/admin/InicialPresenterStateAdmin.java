@@ -4,6 +4,7 @@
  */
 package state.admin;
 
+import model.Notification;
 import model.User;
 import presenter.strategy.admin.GerenciarUsuariosPresenterAdmin;
 import presenter.strategy.admin.IPresenterAdmin;
@@ -20,14 +21,17 @@ public class InicialPresenterStateAdmin extends PresenterStateAdmin {
         super(presenter, user);
     }
     
+    @Override
     public void manterUsuarios(){
         presenter.setState(new GerenciarUsuariosPresenterStateAdmin(GerenciarUsuariosPresenterAdmin.getInstance(user), user));
     }
     
+    @Override
     public void verNotificacoes(){
         presenter.setState(new NotificacaoPresenterStateAdmin(NotificacaoPresenterAdmin.getInstance(user), user));
     }
     
+    @Override
     public void fechar(){
         presenter.setState(new InicialPresenterStateAdmin(PrincipalPresenterAdmin.getInstance(user), user));
     }

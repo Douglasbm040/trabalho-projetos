@@ -7,6 +7,7 @@ package presenter.strategy.admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JInternalFrame;
+import model.Notification;
 import model.User;
 import state.admin.ExibeNotificacaoPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
@@ -21,9 +22,11 @@ public class ExibeNotificacaoPresenterAdmin extends IPresenterAdmin {
     private DetalhesNotificacaoViewAdmin view;
     private PresenterStateAdmin state;
     private User userState;
+    private Notification notification;
     
-    public ExibeNotificacaoPresenterAdmin(User user) {
+    public ExibeNotificacaoPresenterAdmin(User user,Notification notification) {
         userState = user;
+        this.notification = notification;
         view = new DetalhesNotificacaoViewAdmin();
         state = new ExibeNotificacaoPresenterStateAdmin(this, user);
         

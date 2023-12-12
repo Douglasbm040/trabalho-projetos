@@ -6,8 +6,12 @@ package presenter.strategy.admin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
+import model.Notification;
 import model.User;
+import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
 import state.admin.NotificacaoPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
 import view.admin.NotificacoesViewAdmin;
@@ -21,9 +25,11 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
     private PresenterStateAdmin state;
     private static NotificacaoPresenterAdmin instance;
     private User userState;
-    
+    NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
+    private List<Notification> listNotificationAdmin = notificationFactory.Create().SelectNotificationALLAdmin();
     private NotificacaoPresenterAdmin(User user) {
         userState = user;
+        
         view = new NotificacoesViewAdmin();
         state = new NotificacaoPresenterStateAdmin(this, userState);
         
@@ -54,7 +60,11 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
         view.getBtnAbrirNotificacao().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                state.verDetalhesNotificacao();
+                int row = view.getTblNotificacoes().getSelectedRow();
+                if(row >= 0){
+                   state.verDetalhesNotificacao(listNotificationAdmin.get(row));
+                }
+                
             }
         });
         view.getBtnNovaNotificacao().addActionListener(new ActionListener() {
@@ -63,6 +73,13 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
                 state.criarNovaNotificacao();
             }
         });
+        DefaultTableModel modelo = (DefaultTableModel) view.getTblNotificacoes().getModel();
+
+        for (Notification notificationUser : listNotificationAdmin) {
+            String conteudo = notificationUser.getContent();
+            Object[] dadosLinha = {notificationUser.getContent(),"user",notificationUser.getDataEnvio(),"lida"};  // Criar um array com o conteúdo
+            modelo.addRow(dadosLinha);
+        }
     }
     
     @Override
