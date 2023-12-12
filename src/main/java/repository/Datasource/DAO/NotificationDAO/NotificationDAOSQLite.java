@@ -27,7 +27,7 @@ public class NotificationDAOSQLite implements INotificationDAO{
 
         @Override
     public void insertNotification(Notification notification) {
-        String sql = "INSERT INTO NOTIFICATION (CONTENT, DATE_ENVIO, ID_USER) VALUES (?, ?,?)";
+        String sql = "INSERT INTO NOTIFICATION (CONTENT, DATA_NOTIFICATION, ID_USER) VALUES (?, ?,?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, notification.getContent());
@@ -46,9 +46,35 @@ public class NotificationDAOSQLite implements INotificationDAO{
         }
     }
         @Override
-      public List<Notification> SelectNotificationALL(){
+      public List<Notification> SelectNotificationALLUser(int userId){
           List<Notification> listaNotification = new ArrayList<>();
-            String sql = "SELECT * FROM NOTIFICATION";
+            String sql = "SELECT NOTIFICATION.CONTENT ,NOTIFICATION.DATA_NOTIFICATION,NOTIFICATION.ID_USER FROM USER, NOTIFICATION WHERE NOTIFICATION.ID_USER = USER.ID_USER AND USER.ID_USER = ?";
+            // Preparar a instrução SQL
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setInt(1, userId); 
+                // Executar a consulta
+                ResultSet resultSet = preparedStatement.executeQuery();
+                // Processar os resultados
+                while (resultSet.next()) {
+                    String content = resultSet.getString("CONTENT");
+                    String dataEnvio = resultSet.getString("DATA_NOTIFICATION");
+                    int idReceptor = resultSet.getInt("ID_USER");
+
+                   
+           listaNotification.add(new Notification(content, dataEnvio, idReceptor));
+                }
+                  System.out.println("User ID:  Token: "+ resultSet.next());
+            
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+        return listaNotification;
+    }
+        @Override
+      public List<Notification> SelectNotificationALLAdmin (){
+          List<Notification> listaNotification = new ArrayList<>();
+            String sql = "SELECT NOTIFICATION.CONTENT ,NOTIFICATION.DATA_NOTIFICATION,NOTIFICATION.ID_USER FROM USER, NOTIFICATION WHERE NOTIFICATION.ID_USER = USER.ID_USER AND TAG_ACCESS = 0";
             // Preparar a instrução SQL
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 // Executar a consulta
@@ -56,7 +82,7 @@ public class NotificationDAOSQLite implements INotificationDAO{
                 // Processar os resultados
                 while (resultSet.next()) {
                     String content = resultSet.getString("CONTENT");
-                    String dataEnvio = resultSet.getString("DATE_ENVIO");
+                    String dataEnvio = resultSet.getString("DATA_NOTIFICATION");
                     int idReceptor = resultSet.getInt("ID_USER");
 
                    

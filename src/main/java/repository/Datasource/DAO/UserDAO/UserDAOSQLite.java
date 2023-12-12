@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
@@ -22,28 +23,44 @@ public class UserDAOSQLite implements IUserDAO {
     }
     
     @Override
-    public int insertUser(User user) {
-        int rowsAffected = 0 ;
-        String sql = "INSERT INTO USER (NAME, TOKEN_ACCESS, TAG_ACCESS) VALUES (?, ?,?)";
+public int insertUser(User user) {
+    int generatedId = 0;
+    String sql = "INSERT INTO USER (NAME, TOKEN_ACCESS, TAG_ACCESS) VALUES (?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getTokenAccess());
-            preparedStatement.setInt(3, user.getTagAccess());
+    try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        preparedStatement.setString(1, user.getName());
+        preparedStatement.setString(2, user.getTokenAccess());
+        preparedStatement.setInt(3, user.getTagAccess());
 
-            rowsAffected = preparedStatement.executeUpdate();
+        int rowsAffected = preparedStatement.executeUpdate();
 
-            if (rowsAffected > 0) {
-                System.out.println("Inserção bem-sucedida!");
-            } else {
-                System.out.println("Falha na inserção.");
+        if (rowsAffected > 0) {
+            System.out.println("Inserção bem-sucedida!");
+
+            // Consulta para obter o último ID inserido
+            String query = "SELECT last_insert_rowid() as id";
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
+                if (resultSet.next()) {
+                    generatedId = resultSet.getInt("id");
+                    System.out.println("ID gerado: " + generatedId);
+                } else {
+                    System.out.println("Falha ao obter o ID gerado.");
+                }
             }
-            return rowsAffected;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Falha na inserção.");
         }
-         return rowsAffected;
+
+        return generatedId;
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    return generatedId;
+}
+
+
     
     @Override
     public User selectById(int userId) {
@@ -85,7 +102,7 @@ public class UserDAOSQLite implements IUserDAO {
 
             // Processar os resultados
             while (resultSet.next()) {
-                users.add(new User(resultSet.getString("NAME"),resultSet.getString("TOKEN_ACCESS"),resultSet.getInt("TAG_ACCESS")));
+                users.add(new User(resultSet.getString("NAME"),resultSet.getString("TOKEN_ACCESS"),resultSet.getInt("TAG_ACCESS"),resultSet.getInt("ID_USER")));
             }
             System.out.println("User ID:  Token: " + resultSet.next());
 

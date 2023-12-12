@@ -12,6 +12,13 @@ public class User {
     private String name;
     private String tokenAccess;
     private int tagAccess;
+    private int id;
+    public User(String name, String tokenAccess, int tagAccess,int id) {
+        this.name = name;
+        this.tokenAccess = tokenAccess;
+        this.tagAccess = tagAccess;
+        this.id = id;
+    }
 
     public User(String name, String tokenAccess, int tagAccess) {
         this.name = name;
@@ -41,6 +48,14 @@ public class User {
 
     public void setTagAccess(int tagAccess) {
         this.tagAccess = tagAccess;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     

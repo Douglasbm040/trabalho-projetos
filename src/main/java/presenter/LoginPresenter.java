@@ -4,8 +4,6 @@
  */
 package presenter;
 
-import Service.observer.Observable;
-import Service.observer.UserObservable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -18,7 +16,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Notification;
 import model.User;
-import repository.Datasource.DAO.UserDAO.UserDAOSQLite;
 import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
 import repository.Datasource.Factories.UserFactory.UserDAOSQLiteFactory;
 import view.LoginView;
@@ -61,18 +58,28 @@ public class LoginPresenter {
                         }
                     }
                     if (userCadastro != null) {
+                        List<Notification> listNotificationAdmin = notificationFactory.Create().SelectNotificationALLAdmin();
+                        List<Notification> listNotificationUser = notificationFactory.Create().SelectNotificationALLUser(userCadastro.getId());
                         switch (userCadastro.getTagAccess()) {
-                            case 0:
+                            case -1:
+                                System.out.println("testando banco");
+                                System.out.println(userCadastro.getId());
+                                for (Notification n : listNotificationAdmin) {
+                                    System.out.println(n.getContent() + n.getDataEnvio() + n.getIdReceptor());
+                                }
+                                for (Notification n : listNotificationUser) {
+                                    System.out.println(n.getContent() + n.getDataEnvio() + n.getIdReceptor());
+                                }
                                 JOptionPane.showMessageDialog(null, "Aguarde a confirmação do admin !");
                                 break;
                             case 1:
                                 // aqui tem que receber user e notificação
-                                List<Notification> listNotifications = notificationFactory.Create().SelectNotificationALL();
-                                PrincipalPresenterAdmin.getInstance();
+                                //List<Notification> listNotifications = notificationFactory.Create().SelectNotificationALL();
+                                PrincipalPresenterAdmin.getInstance(userCadastro);
                                 view.dispose();
                                 break;
-                            case 2:
-                                
+                            case 0:
+
                                 PrincipalPresenterUser.getInstance(userCadastro);
                                 view.dispose();
                                 break;

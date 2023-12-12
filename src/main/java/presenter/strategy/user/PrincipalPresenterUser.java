@@ -10,8 +10,11 @@ import Service.observer.UserObservable;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import model.Notification;
 import model.User;
 import presenter.LoginPresenter;
+import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
 import state.user.InicialPresenterStateUser;
 import state.user.PresenterStateUser;
 import view.user.ExibeUsuarioViewUser;
@@ -28,12 +31,14 @@ public class PrincipalPresenterUser extends IPresenterUser {
     private PrincipalViewUser view;
     private PresenterStateUser state;
     private User userState;
-
+    //
+    NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
+    private List<Notification> listNotificationUser ;
     private PrincipalPresenterUser(User user) {
         this.view = new PrincipalViewUser();
         this.state = new InicialPresenterStateUser(this, user); 
         userState = user;
-        
+        listNotificationUser = notificationFactory.Create().SelectNotificationALLUser(userState.getId());
         configuraTela();
         
         view.setVisible(true);
@@ -74,10 +79,13 @@ public class PrincipalPresenterUser extends IPresenterUser {
                 state.verNotificacoes();
             }
         });
+        int countNotification = listNotificationUser.size() - 1;
         if (userState != null) {
             view.getLblTipoUsuarioRodape().setText("Tipo: User");
             view.getLblUsuarioRodape().setText("Usuário :"+ userState.getName());
         }
+        
+        view.getBtnNotificacao().setText("" + countNotification);
         
     }
 

@@ -7,7 +7,10 @@ package presenter.strategy.user;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import model.Notification;
 import model.User;
+import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
 import state.user.NotificacaoPresenterStateUser;
 import state.user.PresenterStateUser;
 import view.user.NotificacoesViewUser;
@@ -22,11 +25,15 @@ public class NotificacaoPresenterUser extends IPresenterUser {
     private PresenterStateUser state;
     private static NotificacaoPresenterUser instance;
     private User userState;
-
+    
+    NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
+    private List<Notification> listNotificationUser ;
+    
     private NotificacaoPresenterUser(User user) {
         userState = user;
         view = new NotificacoesViewUser();
         state = new NotificacaoPresenterStateUser(this, userState);
+        listNotificationUser = notificationFactory.Create().SelectNotificationALLUser(user.getId());
         configuraTela();
         view.setVisible(true);
     }
@@ -57,7 +64,9 @@ public class NotificacaoPresenterUser extends IPresenterUser {
             public void actionPerformed(ActionEvent e) {
                 state.exibeNotificacao();
             }
+            
         });
+       //view.getTblNotificacoes().add(, 0);
     }
 
     @Override

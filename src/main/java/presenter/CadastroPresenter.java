@@ -62,19 +62,19 @@ public class CadastroPresenter {
                 List<String> retornoValidador = validador.Create().validar(view.getTxtSenha().getText());
                 if (retornoValidador.isEmpty()) {
                     if (listUser.isEmpty()) {
-                        int row = UserFactory.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 0));
-                        if (row > 0) {
-                            LocalDateTime dataAtual = LocalDateTime.now();
-                            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                            String dataAtualFormatada = dataAtual.format(formato);
-                            notificationFactory.Create().insertNotification(new Notification("O usuário"+view.getTxtUsuario() +"  solicio de acesso a usuário", dataAtualFormatada, row));
-                        }
+                        UserFactory.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 1));
                         JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                         view.dispose();
                         return;
                     }
-                    
-                    UserFactory.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 2));
+
+                    int row = UserFactory.create().insertUser(new User(view.getTxtUsuario().getText(), view.getTxtSenha().getText(), 0));
+                    if (row > 0) {
+                        LocalDateTime dataAtual = LocalDateTime.now();
+                        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        String dataAtualFormatada = dataAtual.format(formato);
+                        notificationFactory.Create().insertNotification(new Notification("O usuário " + view.getTxtUsuario().getText() + "  solicio de acesso a USER ", dataAtualFormatada, row));
+                    }
                     JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                     view.dispose();
                     return;
