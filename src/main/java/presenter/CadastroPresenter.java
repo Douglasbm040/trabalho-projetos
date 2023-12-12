@@ -67,7 +67,7 @@ public class CadastroPresenter {
                             LocalDateTime dataAtual = LocalDateTime.now();
                             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                             String dataAtualFormatada = dataAtual.format(formato);
-                            notificationDAO.Create().insertNotification(new Notification("O usuário solicio de acesso ", dataAtualFormatada, row));
+                            notificationDAO.Create().insertNotification(new Notification("O usuário"+view.getTxtUsuario() +"  solicio de acesso a usuário", dataAtualFormatada, row));
                         }
                         JOptionPane.showMessageDialog(null, "Cadastro concluido !");
                         view.dispose();
