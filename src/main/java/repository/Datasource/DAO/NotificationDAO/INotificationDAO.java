@@ -19,3 +19,5 @@ public interface INotificationDAO {
      public void deleteNotificationALL();
      public void deleteNotification(int id);  
 }
+
+

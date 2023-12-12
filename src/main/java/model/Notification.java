@@ -14,13 +14,31 @@ public class Notification {
     private int idSender;
     private int idReceptor;
     private int isRead;
-
-    public Notification(String content, String dataEnvio, int idSender, int idReceptor, int isRead) {
+    private int idNotification;
+    
+     public Notification(String content, String dataEnvio, int idSender, int idReceptor, int isRead) {
         this.content = content;
         this.dataNotification = dataEnvio;
         this.idSender = idSender;
         this.idReceptor = idReceptor;
         this.isRead = isRead;
+    }
+
+    public Notification(String content, String dataEnvio, int idSender, int idReceptor, int isRead,int idNotification) {
+        this.content = content;
+        this.dataNotification = dataEnvio;
+        this.idSender = idSender;
+        this.idReceptor = idReceptor;
+        this.isRead = isRead;
+        this.idNotification =idNotification;
+    }
+
+    public int getIdNotification() {
+        return idNotification;
+    }
+
+    public void setIdNotification(int idNotification) {
+        this.idNotification = idNotification;
     }
     
     

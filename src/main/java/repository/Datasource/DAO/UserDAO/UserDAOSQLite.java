@@ -152,12 +152,12 @@ public class UserDAOSQLite implements IUserDAO {
     }
 
     @Override
-    public void updateUserTagAccess(String tagAccess, int userId) {
+    public void updateUserTagAccess(int tagAccess, int userId) {
         String sql = "UPDATE USER SET TAG_ACCESS = ? WHERE ID_USER = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, userId);
-            preparedStatement.setString(2, tagAccess);
+            preparedStatement.setInt(2, tagAccess);
 
             int rowsAffected = preparedStatement.executeUpdate();
 

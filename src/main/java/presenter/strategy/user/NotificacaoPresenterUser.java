@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Notification;
 import model.User;
 import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
+import repository.Datasource.Factories.UserFactory.UserDAOSQLiteFactory;
 import state.user.NotificacaoPresenterStateUser;
 import state.user.PresenterStateUser;
 import view.user.NotificacoesViewUser;
@@ -31,6 +32,7 @@ public class NotificacaoPresenterUser extends IPresenterUser {
     private User userState;
 
     NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
+    UserDAOSQLiteFactory userFactory = new UserDAOSQLiteFactory(); 
     private List<Notification> listNotificationUser;
 
     private NotificacaoPresenterUser(User user) {
@@ -79,7 +81,7 @@ public class NotificacaoPresenterUser extends IPresenterUser {
 
         for (Notification notificationUser : listNotificationUser) {
             String conteudo = notificationUser.getContent();
-            Object[] dadosLinha = {notificationUser.getContent(),"user",notificationUser.getDataEnvio(),"lida"};  // Criar um array com o conteúdo
+            Object[] dadosLinha = {notificationUser.getContent(),userFactory.create().selectById(notificationUser.getIdReceptor()).getName(),notificationUser.getDataEnvio(),notificationUser.getIsRead()};  // Criar um array com o conteúdo
             modelo.addRow(dadosLinha);
         }
         

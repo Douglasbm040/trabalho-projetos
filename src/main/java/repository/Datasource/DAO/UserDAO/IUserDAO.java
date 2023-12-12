@@ -23,7 +23,7 @@ public interface IUserDAO {
     
     public User selectAdmin();
     
-    public void  updateUserTagAccess(String tagAccess, int userId);
+    public void  updateUserTagAccess(int tagAccess, int userId);
 
     public void deleteUser(int userId);
     

@@ -56,7 +56,7 @@ public class NotificationDAOSQLite implements INotificationDAO {
                 int idReceptor = resultSet.getInt("ID_USER_RECEIVER");
                 int isRead = resultSet.getInt("IS_READ");
 
-                listaNotification.add(new Notification(content, dataEnvio, idSender, idReceptor, isRead));
+                listaNotification.add(new Notification(content, dataEnvio, idSender, idReceptor, isRead,idNotification));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class NotificationDAOSQLite implements INotificationDAO {
                 int idReceptor = resultSet.getInt("ID_USER_RECEIVER");
                 int isRead = resultSet.getInt("IS_READ");
 
-                listaNotification.add(new Notification(content, dataEnvio, idSender, idReceptor, isRead));
+                listaNotification.add(new Notification(content, dataEnvio, idSender, idReceptor, isRead,idNotification));
             }
         } catch (SQLException e) {
             e.printStackTrace();

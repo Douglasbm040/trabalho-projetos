@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Notification;
 import model.User;
 import repository.Datasource.Factories.NotificationFactory.NotificationDAOSQLiteFactory;
+import repository.Datasource.Factories.UserFactory.UserDAOSQLiteFactory;
 import state.admin.NotificacaoPresenterStateAdmin;
 import state.admin.PresenterStateAdmin;
 import view.admin.NotificacoesViewAdmin;
@@ -27,6 +28,7 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
     private User userState;
     NotificationDAOSQLiteFactory notificationFactory = new NotificationDAOSQLiteFactory();
     private List<Notification> listNotificationAdmin = notificationFactory.Create().SelectNotificationALLAdmin();
+    UserDAOSQLiteFactory userFactory = new UserDAOSQLiteFactory(); 
     private NotificacaoPresenterAdmin(User user) {
         userState = user;
         
@@ -75,9 +77,11 @@ public class NotificacaoPresenterAdmin extends IPresenterAdmin {
         });
         DefaultTableModel modelo = (DefaultTableModel) view.getTblNotificacoes().getModel();
 
-        for (Notification notificationUser : listNotificationAdmin) {
-            String conteudo = notificationUser.getContent();
-            Object[] dadosLinha = {notificationUser.getContent(),"user",notificationUser.getDataEnvio(),"lida"};  // Criar um array com o conteúdo
+
+        for (Notification notificationAdmin : listNotificationAdmin) {
+            String isRead  = notificationAdmin.getIsRead() == 0 ? "não lida" : "lida" ;
+            String conteudo = notificationAdmin.getContent();
+            Object[] dadosLinha = {notificationAdmin.getContent(),userFactory.create().selectById(notificationAdmin.getIdSender()).getName(),notificationAdmin.getDataEnvio(), isRead};  // Criar um array com o conteúdo
             modelo.addRow(dadosLinha);
         }
     }
